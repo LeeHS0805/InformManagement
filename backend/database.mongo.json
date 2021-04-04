@@ -1,0 +1,19 @@
+// 每条通知的数据形态
+{
+	"title": "",
+	"creator": 20201111,
+	"content": "",
+	"related_group_id": 0,
+	"timestamp": 161111,
+	"tag": ["作业","custom"],
+	"priority": 0, // 0代表普通，1代表重要，2代表紧急
+	"hasRead": [20201919,20201111]
+}
+
+
+// redis存群组进入邀请码
+{
+	"code": "",
+	"group_id": 0
+}
+//有expire time
