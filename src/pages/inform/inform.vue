@@ -2,10 +2,10 @@
   <view class="inform">
     <view class="calendar">
       <AtCalendar :minDate="minDate" :maxDate="maxDate" :marks="['2021/3/31']"
-                  :onSelectDate="h" />
+                  :onSelectDate="h"/>
     </view>
     <view class="informCard">
-      <view class="card" v-for="(item) in array">
+      <view class="card" v-for="(item) in array" @tap="goDetail(item)">
         <view class="cardHeader">
           <view class="text ellipsis">计算机四班通知</view>
           <view class="time"> / 截止&nbsp2021年02月01日</view>
@@ -35,34 +35,43 @@
 </template>
 
 <script>
-import { AtCalendar } from 'taro-ui-vue'
+import {AtCalendar,AtFloatLayout} from 'taro-ui-vue'
 import Priority from "../../component/Priority/Priority"
 import wxLogin from "../../utills/wxLogin";
 import "taro-ui-vue/dist/style/components/calendar.scss";
+import "taro-ui-vue/dist/style/components/float-layout.scss";
 import "./inform.scss"
+import Taro from '@tarojs/taro'
 
 let date = new Date();
 export default {
   data() {
     return {
-      minDate: new Date(date.getFullYear() - 1, date.getMonth(),date.getDay()),
+      minDate: new Date(date.getFullYear() - 1, date.getMonth(), date.getDay()),
       maxDate: date,
-      array:[1,2,3,4,5]
+      array: [1, 2, 3, 4, 5],
     }
   },
 
   components: {
     AtCalendar,
-    Priority
+    Priority,
+    AtFloatLayout
   },
 
   methods: {
-    h(e){
+    h(e) {
       console.log(e)
+    },
+    goDetail(item){
+      let url = `../../pages/informDetail/informDetail?params=${JSON.stringify(item)}`
+      Taro.navigateTo({
+        url
+      })
     }
 
   },
-  async mounted(){
+  async mounted() {
     // console.log(new Date(now.getFullYear() - 1, now.getMonth(), now.getDay()).toLocaleDateString())
     // wxLogin()
     console.log(this.minDate)

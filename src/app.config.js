@@ -3,6 +3,8 @@ export default {
     'pages/inform/inform',
     'pages/launch/launch',
     'pages/profile/profile',
+    'pages/informDetail/informDetail',
+
   ],
   window: {
     backgroundTextStyle: 'light',

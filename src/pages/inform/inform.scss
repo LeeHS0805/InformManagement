@@ -38,6 +38,7 @@
           flex: 2.5;
           letter-spacing: 4px;
           font-size: 33px;
+          font-weight:440;
           margin: auto;
         }
 
@@ -52,6 +53,9 @@
         .priority-box {
           flex: 1;
           margin: auto;
+          .priority{
+            float: right;
+          }
         }
       }
 
@@ -65,6 +69,7 @@
           letter-spacing: 3px;
           line-height: 48px;
           text-indent: 40px;
+          color: #373737;
         }
       }
       .cardFoot{
@@ -96,20 +101,3 @@
   }
 }
 
-.wrap {
-  white-space: normal;
-  word-break: break-all;
-  word-wrap: break-word;
-}
-
-.ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.ellipsis-3{
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-}

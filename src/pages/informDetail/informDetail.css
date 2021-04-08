@@ -1,0 +1,49 @@
+.inform-detail {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+  .inform-detail .inform-container {
+    width: 80%;
+    margin: 50px auto 0 auto; }
+    .inform-detail .inform-container .priority-box {
+      width: 100%;
+      margin: 35px auto 35px -5px;
+      overflow: hidden; }
+      .inform-detail .inform-container .priority-box .priority {
+        width: 90px;
+        float: left;
+        text-indent: 12px;
+        letter-spacing: 12px; }
+    .inform-detail .inform-container .title {
+      text-align: left;
+      font-size: 45px;
+      font-weight: 500;
+      margin-left: -6px;
+      letter-spacing: 8px; }
+    .inform-detail .inform-container .details {
+      display: flex;
+      flex-direction: row;
+      margin-top: 30px;
+      font-size: 25px;
+      line-height: 40px;
+      letter-spacing: 5px;
+      color: #757575;
+      border-bottom: 1px #e7e7e7 solid; }
+      .inform-detail .inform-container .details .key {
+        margin-right: 40px;
+        margin-bottom: 40px; }
+    .inform-detail .inform-container .timeline {
+      margin-top: 50px; }
+      .inform-detail .inform-container .timeline .at-timeline-item {
+        letter-spacing: 4px;
+        margin: 30px auto; }
+  .inform-detail .finish-btn {
+    width: 40%;
+    margin: 70px auto 0 auto; }
+    .inform-detail .finish-btn .at-button {
+      height: 70px;
+      line-height: 70px;
+      letter-spacing: 7px;
+      text-indent: 7px; }
+
+/*# sourceMappingURL=informDetail.css.map */

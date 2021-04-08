@@ -2,6 +2,7 @@ import Vue from 'vue'
 import './app.scss'
 import 'taro-ui/dist/style/index.scss'
 
+
 const App = {
   onShow (options) {
   },
@@ -10,5 +11,6 @@ const App = {
     return h('block', this.$slots.default)
   }
 }
+
 
 export default App
