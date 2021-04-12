@@ -41,7 +41,7 @@ import wxLogin from "../../utills/wxLogin";
 import "taro-ui-vue/dist/style/components/calendar.scss";
 import "taro-ui-vue/dist/style/components/float-layout.scss";
 import "./inform.scss"
-import Taro from '@tarojs/taro'
+// import Taro from '@tarojs/taro'
 
 let date = new Date();
 export default {

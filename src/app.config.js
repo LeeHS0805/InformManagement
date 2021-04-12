@@ -1,7 +1,8 @@
 export default {
   pages: [
-    'pages/inform/inform',
     'pages/launch/launch',
+    'pages/addInform/addInform',
+    'pages/inform/inform',
     'pages/profile/profile',
     'pages/informDetail/informDetail',
 

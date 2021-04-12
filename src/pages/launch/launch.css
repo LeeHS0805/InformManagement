@@ -1,5 +1,38 @@
 .launch {
   width: 100%;
   height: 100%; }
+  .launch .fun-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 25px auto; }
+    .launch .fun-box .fuc {
+      width: 22vw;
+      height: 22vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 10px 5vw; }
+      .launch .fun-box .fuc .icon {
+        width: 10vw;
+        height: 10vw; }
+        .launch .fun-box .fuc .icon image {
+          width: 100%;
+          height: 100%; }
+      .launch .fun-box .fuc .text {
+        margin-top: 25px;
+        letter-spacing: 5px;
+        text-indent: 5px;
+        color: #323232; }
+  .launch .title {
+    padding: 25px 0;
+    text-align: center;
+    border-top: 1px solid #f1f1f1;
+    letter-spacing: 12px;
+    text-indent: 12px;
+    font-size: 38px; }
 
 /*# sourceMappingURL=launch.css.map */
