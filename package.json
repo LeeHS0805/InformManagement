@@ -39,7 +39,8 @@
     "@tarojs/components": "3.2.0",
     "@tarojs/runtime": "3.2.0",
     "@tarojs/taro": "3.2.0",
-    "taro-ui-vue": "^1.0.0-beta.9",
+    "node-sass": "^4.14.1",
+    "taro-ui-vue": "^1.0.0-beta.10",
     "vue": "^2.5.0",
     "vue-template-compiler": "^2.5.0",
     "vuex": "^3.6.2"
@@ -50,6 +51,7 @@
     "@tarojs/webpack-runner": "3.2.0",
     "@types/webpack-env": "^1.13.6",
     "babel-preset-taro": "3.2.0",
-    "vue-loader": "^15.9.2"
+    "vue-loader": "^15.9.2",
+    "taro-ui": "^3.0.0-alpha"
   }
 }

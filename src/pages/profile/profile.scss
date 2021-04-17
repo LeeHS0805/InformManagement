@@ -1,0 +1,69 @@
+.userInfoContainer {
+    width: 100%;
+    height: 100%;
+}
+
+.userInfoBasic {
+    height: 300px;
+    border: solid 0.5px white;
+    position: relative;
+    background-image: url(https://www.z4a.net/images/2021/04/17/profileHeaderBackground.jpg);
+    opacity: 0.9;
+    z-index: -1;
+    .userAvator{
+        height: 120px;
+        width: 120px;
+        margin: 60px;
+    }
+    .userNameContainer {
+        position: absolute;
+        width: 220px;
+        left: 260px;
+        top: 80px;
+        color: rgba(44, 62, 80,1.0);
+        font-size: 48px;
+    }
+    .userName {
+        height: 60px;
+        width:fit-content;
+        font-size: larger;
+    }
+    
+}
+
+.userInfoNav {
+    width: 85%;
+    height: 180px;
+    background: rgba(255, 255, 255,1.0);
+    margin: 0 auto;
+    margin-top: -90px;
+    border-radius: 20px;
+    border: solid 1px rgba(223, 228, 234,1.0);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    display: flex;
+    .navItem {
+        display: flex;
+        width: 33.3333%;
+        box-sizing: border-box;
+        flex-direction: column;
+        align-items: center;
+        .iconFont {
+            font-size: 90px;
+            line-height: 130px;
+        }
+        .itemName {
+            // 还需要考虑自适应的问题
+            color: rgba(44, 62, 80,1.0);
+            font-size: 30px;
+        }
+    }
+    // .navItem:not(:last-child) {
+    //     border-right: solid 5px #95a5a6;
+    // }
+}
+
+.userInfoMore {
+    height: 330px;
+    position: relative;
+    margin: 40px 20px;
+}
