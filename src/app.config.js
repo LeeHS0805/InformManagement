@@ -1,11 +1,16 @@
 export default {
   pages: [
+    'pages/login/login',
+    'pages/profile/profile',
     'pages/launch/launch',
     'pages/addInform/addInform',
     'pages/inform/inform',
-    'pages/profile/profile',
+    
     'pages/informDetail/informDetail',
-
+    'pages/createChannel/createChannel',
+    'pages/joinChannel/joinChannel',
+    'pages/faq/faq',
+    'pages/setting/setting',
   ],
   window: {
     backgroundTextStyle: 'light',

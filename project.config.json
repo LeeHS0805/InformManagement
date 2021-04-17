@@ -2,7 +2,7 @@
   "miniprogramRoot": "dist/",
   "projectname": "myApp",
   "description": "",
-  "appid": "wx15a26fbbc963b6b9",
+  "appid": "wx918ded4620b3ec39",
   "setting": {
     "urlCheck": true,
     "es6": true,
@@ -23,7 +23,7 @@
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": true,
+    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],

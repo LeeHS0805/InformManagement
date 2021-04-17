@@ -42,7 +42,12 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    }
+    },
+    enableExtract:true,
+    miniCssExtractPluginOption: {
+    //忽略css文件引入顺序
+    ignoreOrder: true
+    },
   },
   h5: {
     publicPath: '/',
