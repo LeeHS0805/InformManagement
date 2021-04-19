@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import './app.scss'
 import 'taro-ui/dist/style/index.scss'
+// 应该是引入哪一个
+import 'taro-ui-vue/dist/style/index.scss'
 
 
 const App = {
