@@ -13,7 +13,7 @@
     </swiper>
     </view>
     <view class="getUserInfoBtn">
-      <AtButton circle type='secondary' class="registerStu" :onClick="getUserProfile">点击进入</AtButton>
+      <AtButton circle type='secondary' class="registerUser" :onClick="getUserProfile">点击进入</AtButton>
     </view>
   </view>
     
@@ -62,6 +62,8 @@ export default {
           )
           console.log(res);
           console.log("成功获取用户头像和个人信息");
+          console.log(res.userInfo.avatarUrl);
+          console.log(res.userInfo.nickName);
           let url = `../inform/inform`
           Taro.reLaunch({
             url,

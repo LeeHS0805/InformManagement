@@ -31,20 +31,17 @@
         <AtListItem
           title='常见问题'
           arrow='right'
-          class="normalQuestion"
           :iconInfo="{ size: 25, color: '#78A4FA', value: 'search', }"
           :onClick="tofreAskedQuestions"
         />
        <AtListItem
           title='向我们反馈'
           arrow='right'
-          class="submitToUs"
           :iconInfo="{ size: 25, color: '#78A4FA', value: 'check-circle', }"
         />
         <AtListItem
           title='设置'
           arrow='right'
-          class="setUp"
           :iconInfo="{ size: 25, color: '#78A4FA', value: 'settings', }"
           :onClick="toSetting"
         />
