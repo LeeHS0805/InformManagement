@@ -14,13 +14,16 @@ export default {
     'pages/informDetail/informDetail',
     'pages/faq/faq',
     'pages/setting/setting',
+
   ],
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'black'
+    navigationBarTextStyle: 'black',
   },
+
   tabBar: {
     color: "#000000",
     backgroundColor: "#fafafa",
@@ -34,8 +37,8 @@ export default {
         selectedIconPath: "static/tabs/calendar-active.png"
       },
       {
-        text: "频道",
-        pagePath: "pages/launch/launch",
+        text: "发布",
+        pagePath: "pages/addInform/addInform",
         iconPath: "static/tabs/caps-lock.png",
         selectedIconPath: "static/tabs/caps-lock-active.png"
       },

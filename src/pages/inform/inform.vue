@@ -2,79 +2,106 @@
   <view class="inform">
     <view class="calendar">
       <AtCalendar :minDate="minDate" :maxDate="maxDate" :marks="['2021/3/31']"
-                  :onSelectDate="h"/>
+                  :onSelectDate="changeDate"/>
     </view>
-    <view class="informCard">
-      <view class="card" v-for="(item) in array" @tap="goDetail(item)">
-        <view class="cardHeader">
-          <view class="text ellipsis">计算机四班通知</view>
-          <view class="time"> / 截止&nbsp2021年02月01日</view>
-          <view class="priority-box">
-            <Priority :status="0"></Priority>
-          </view>
-        </view>
-        <view class="cardMain">
-          <view class="text wrap ellipsis-3">
-            本次运动会院级初试原计划于本周六举办，但由于周六是清明节假期期间，考虑到部分同学要回家，现推迟初试，时间待定
-          </view>
-        </view>
-        <view class="cardFoot">
-          <view class="publish ellipsis">
-            [创建人]:&nbsp李鑫磊
-          </view>
-          <view class="status">
-            未读
-          </view>
-          <view class="time">
-            2021/04/01
-          </view>
-        </view>
-      </view>
-    </view>
+    <filterInform></filterInform>
+    <informCard :informArray="this.informArray" :noInform="noInform"></informCard>
   </view>
 </template>
 
 <script>
-import {AtCalendar,AtFloatLayout} from 'taro-ui-vue'
-import Priority from "../../component/Priority/Priority"
+import './inform.scss'
+import {AtCalendar, AtFloatLayout} from 'taro-ui-vue'
+import filterInform from "../filterInform/filterInform";
+import informCard from "../../components/informCard/informCard";
 import wxLogin from "../../utills/wxLogin";
-import "taro-ui-vue/dist/style/components/calendar.scss";
-import "taro-ui-vue/dist/style/components/float-layout.scss";
-import "./inform.scss"
-// import Taro from '@tarojs/taro'
+import request from "../../utills/request";
+import {today} from "../../utills/today"
+import Taro from '@tarojs/taro'
+
 
 let date = new Date();
 export default {
   data() {
     return {
+      page: 1,                //分页
+      pageTotal: 0,            //总页数
       minDate: new Date(date.getFullYear() - 1, date.getMonth(), date.getDay()),
       maxDate: date,
-      array: [1, 2, 3, 4, 5],
+      noInform: true,        //判断今日是否存在通知
+      informArray: [],        //存储通知信息
+      focusDate: today(),      //日历目前触发的日期
     }
   },
-
-  components: {
-    AtCalendar,
-    Priority,
-    AtFloatLayout
-  },
-
   methods: {
-    h(e) {
-      console.log(e)
+    // 请求并处理通知数组 1.展示loading 2.发送请求 3.关闭loading
+    async getInform(date) {
+      if (this.pageTotal == 0 || this.pageTotal > this.page) {
+        await Taro.showToast({title: '加载中', icon: 'loading', duration: 2000})
+        let {data: {docs, pageTotal}} = await request('/getMyInformByDate', 'get', {date, page: this.page})
+        this.pageTotal = pageTotal
+        this.showInformImg(docs)
+        setTimeout(() => {
+          Taro.stopPullDownRefresh()
+          Taro.hideToast()
+        }, 200)
+      } else {
+        await Taro.showToast({title: '到底了', icon: 'none', duration: 500})
+      }
     },
-    goDetail(item){
-      let url = `../../pages/informDetail/informDetail?params=${JSON.stringify(item)}`
-      Taro.navigateTo({
-        url
-      })
-    }
+    // 切换日期触发
+    changeDate({value: {start: time}}) {
+      this.clearPage()
+      this.getInform(time)
+      this.focusDate = time
+    },
+    //判断inform数组是否为空来决定是否展示"暂无通知"提示
+    showInformImg(array = []) {
+      if (array.length == 0) {
+        this.noInform = true
+        this.informArray = []
+      } else {
+        array.forEach((item) => {
+          item.relatedGroup = item.relatedGroup[0].name
+        })
+        this.noInform = false
+        if (this.page > 1) this.informArray = [...this.informArray, ...array]
+        else this.informArray = array
+      }
+    },
 
+    clearPage() {
+      this.page = 1
+      this.pageTotal = 0
+    }
+  },
+  //onLoad触发一次登录请求
+  async onLoad() {
+    // await Taro.setEnableDebug({
+    //   enableDebug:true
+    // })
+    await wxLogin()
+  },
+  async onShow(){
+    this.clearPage()
+    await this.getInform(this.focusDate)
   },
   async mounted() {
-    // console.log(new Date(now.getFullYear() - 1, now.getMonth(), now.getDay()).toLocaleDateString())
-    // wxLogin()
-    console.log(this.minDate)
+    await this.getInform(today())
+  },
+  onPullDownRefresh() {
+    this.clearPage()
+    this.getInform(this.focusDate)
+  },
+  onReachBottom() {
+    this.page++
+    this.getInform(this.focusDate)
+  },
+  components: {
+    AtCalendar,
+    AtFloatLayout,
+    informCard,
+    filterInform
   }
 }
 </script>
