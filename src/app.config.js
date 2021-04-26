@@ -1,26 +1,19 @@
 export default {
   pages: [
-    'pages/login/login',
-    'pages/myChannel/myChannel',
-    'pages/profile/profile',
-    'pages/myGroupDetail/myGroupDetail',
-    'pages/filterInfo/filterInfo',
-    'pages/createChannel/createChannel',
-    'pages/joinChannel/joinChannel',
-    'pages/register/register',
-    'pages/launch/launch',
-    'pages/addInform/addInform',
     'pages/inform/inform',
+    'pages/addInform/addInform',
+    'pages/launch/launch',
+    'pages/profile/profile',
     'pages/informDetail/informDetail',
-    'pages/faq/faq',
-    'pages/setting/setting',
+
   ],
   window: {
-    backgroundTextStyle: 'light',
+    backgroundTextStyle: 'dark',
     navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: 'WeChat',
-    navigationBarTextStyle: 'black'
+    navigationBarTextStyle: 'black',
   },
+
   tabBar: {
     color: "#000000",
     backgroundColor: "#fafafa",
@@ -34,8 +27,8 @@ export default {
         selectedIconPath: "static/tabs/calendar-active.png"
       },
       {
-        text: "频道",
-        pagePath: "pages/launch/launch",
+        text: "发布",
+        pagePath: "pages/addInform/addInform",
         iconPath: "static/tabs/caps-lock.png",
         selectedIconPath: "static/tabs/caps-lock-active.png"
       },

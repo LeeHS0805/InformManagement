@@ -1,0 +1,81 @@
+.isRead {
+  color: #838383 !important;
+  text-decoration: none !important; }
+
+.informCard {
+  width: 90vw;
+  min-height: 55vh;
+  margin: auto;
+  margin-top: 1vh; }
+  .informCard .emptyCard {
+    overflow: hidden; }
+    .informCard .emptyCard image {
+      transform: scale(1.2);
+      padding-left: 40px;
+      margin: 100px auto; }
+  .informCard .card {
+    height: 300px;
+    margin: 25px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px; }
+    .informCard .card .cardHeader {
+      height: 100px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: nowrap;
+      margin-top: 10px; }
+      .informCard .card .cardHeader .text {
+        flex: 2.6;
+        text-align: left;
+        letter-spacing: 4px;
+        font-size: 33px;
+        font-weight: 440;
+        margin: auto; }
+      .informCard .card .cardHeader .time {
+        flex: 2.2;
+        text-align: left;
+        margin: auto 0 auto 15px;
+        color: #2a2a2a;
+        font-size: 25px; }
+      .informCard .card .cardHeader .priority-box {
+        flex: 1;
+        margin: auto; }
+        .informCard .card .cardHeader .priority-box .priority {
+          float: right; }
+    .informCard .card .cardMain {
+      width: 100%;
+      flex-grow: 1;
+      margin-top: 10px; }
+      .informCard .card .cardMain .text {
+        max-height: 144px;
+        width: 100%;
+        letter-spacing: 3px;
+        line-height: 48px;
+        color: #373737; }
+    .informCard .card .cardFoot {
+      width: 100%;
+      margin: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row;
+      font-size: 26px;
+      color: #626262; }
+      .informCard .card .cardFoot .publish {
+        flex: 1;
+        text-align: left; }
+      .informCard .card .cardFoot .status {
+        flex: 1;
+        text-align: center;
+        color: #d69f15;
+        padding-left: 20px;
+        text-decoration: underline; }
+      .informCard .card .cardFoot .time {
+        flex: 1;
+        text-align: right;
+        padding-right: 10px; }
+
+/*# sourceMappingURL=informCard.css.map */

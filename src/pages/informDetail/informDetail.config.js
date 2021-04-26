@@ -1,3 +1,6 @@
 export default {
-  navigationBarTitleText: '通知详情'
+  navigationBarTitleText: '通知详情',
+  window:{
+    navigationStyle:'custom'
+  }
 }
