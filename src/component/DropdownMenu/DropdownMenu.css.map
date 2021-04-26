@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,CAAC;EACC,KAAK,EAAE,OAAO",
+"sources": ["DropdownMenu.scss"],
+"names": [],
+"file": "DropdownMenu.css"
+}
