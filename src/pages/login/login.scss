@@ -1,0 +1,23 @@
+.registerIdConfirm {
+    width: 100%;
+    height: 100%;
+  swiper {
+    height: 100vh;
+    .slide-image {
+      border-radius: 6px;
+      width: 100%;
+      height: 100vh;
+    }
+  }
+  .getUserInfoBtn {
+    position: fixed;
+    bottom: 120px;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    .registerUser {
+      width: 260px;
+      height: 100px;
+    }
+  }
+}
