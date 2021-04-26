@@ -1,0 +1,40 @@
+.filter-inform {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  margin-top: 2vh;
+  border-top: 1px solid #efefef; }
+  .filter-inform .select {
+    margin-top: 2vh; }
+    .filter-inform .select .select-item {
+      letter-spacing: 5px;
+      font-size: 28px;
+      margin: 10px auto;
+      color: #4c4c4c; }
+      .filter-inform .select .select-item view:after {
+        content: '';
+        width: 0;
+        height: 0;
+        float: right;
+        position: relative;
+        top: 15px;
+        left: 10px;
+        border-left: 10px solid transparent;
+        border-top: 11px solid #575757;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid transparent; }
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; }
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1; }
+
+/*# sourceMappingURL=filterInform.css.map */

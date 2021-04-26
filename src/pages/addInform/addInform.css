@@ -25,7 +25,7 @@
     .addInform .main .main-content {
       height: 320px;
       width: 100%;
-      margin: 40px auto 20px auto;
+      margin: 40px auto 10px auto;
       letter-spacing: 5px;
       text-indent: 5px; }
     .addInform .main .placeholder {
@@ -36,8 +36,33 @@
       padding: 0 25px;
       color: #CECECE;
       margin: 30px auto; }
+  .addInform .options {
+    margin-top: 60px;
+    padding: 0 40px; }
+    .addInform .options .demo-list-item {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      letter-spacing: 4px;
+      border-top: 1px solid #EAF1F7; }
+      .addInform .options .demo-list-item .demo-list-item__label {
+        color: #565656; }
+      .addInform .options .demo-list-item .demo-list-item__value {
+        margin-left: auto;
+        color: #A1A1A1; }
+        .addInform .options .demo-list-item .demo-list-item__value input {
+          text-align: right; }
   .addInform .detail {
     margin-top: 50px;
     padding: 0 25px; }
+
+.submit-btn {
+  width: 50%;
+  height: 80px;
+  letter-spacing: 13px;
+  text-indent: 13px;
+  line-height: 80px;
+  margin-top: 80px; }
 
 /*# sourceMappingURL=addInform.css.map */

@@ -1,7 +1,12 @@
+.bottom {
+  height: 10vh;
+  width: 100%; }
+
 .inform-detail {
   width: 100%;
-  height: 100%;
-  overflow: hidden; }
+  height: 90vh;
+  overflow: scroll;
+  padding-bottom: 100px; }
   .inform-detail .inform-container {
     width: 80%;
     margin: 50px auto 0 auto; }
@@ -23,15 +28,25 @@
     .inform-detail .inform-container .details {
       display: flex;
       flex-direction: row;
+      position: relative;
       margin-top: 30px;
       font-size: 25px;
       line-height: 40px;
-      letter-spacing: 5px;
       color: #757575;
       border-bottom: 1px #e7e7e7 solid; }
+      .inform-detail .inform-container .details .expired {
+        position: absolute;
+        width: 100px;
+        height: 92px;
+        transform: scale(1.5);
+        top: 10px;
+        right: 50px; }
       .inform-detail .inform-container .details .key {
         margin-right: 40px;
-        margin-bottom: 40px; }
+        margin-bottom: 50px;
+        letter-spacing: 3px; }
+      .inform-detail .inform-container .details .value {
+        letter-spacing: 1px; }
     .inform-detail .inform-container .timeline {
       margin-top: 50px; }
       .inform-detail .inform-container .timeline .at-timeline-item {
@@ -45,5 +60,37 @@
       line-height: 70px;
       letter-spacing: 7px;
       text-indent: 7px; }
+
+.at-timeline-item__content {
+  margin-top: -45px; }
+
+.informImage {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center; }
+  .informImage .image {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px; }
+    .informImage .image .imageSmall {
+      height: 160px;
+      width: 180px;
+      object-fit: cover; }
+
+.showImage {
+  height: 110vh;
+  width: 100vw;
+  margin-top: -100px;
+  position: absolute;
+  z-index: 11;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
 
 /*# sourceMappingURL=informDetail.css.map */
