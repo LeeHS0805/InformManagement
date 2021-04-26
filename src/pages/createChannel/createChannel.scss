@@ -1,34 +1,14 @@
 .createChannel{
   height: 100%;
   .newchannelTitle {
-    margin-bottom: 20px;
+    // margin-bottom: 5px;
+    margin-left: -8px;
   }
-  // .newchannelPhoto{
-    
+  
+  // .channelCover {
+  //   border: solid 5px red;
   // }
-  .newchannelTags {
-    border: solid 2px #ecf0f1;
-    border-top: none;
-    .titleContainer {
-      margin: 30px 20px;
-    }
-    .tagContainer {
-      // 考虑封装间距样式
-      // border: solid 3px red;
-      margin: 20px 20px 40px 20px;
-      padding: 30px 20px;
-      .tagSmallContainer {
-        margin-bottom: 30px;
-      }
-    }
-  }
-  .newchannelIntroduce {
-    padding: 10px;
-    .titleContainer {
-      margin: 30px 20px;
-    }
 
-  }
   .createChannelBtn {
     position: absolute;
     width: 600px;

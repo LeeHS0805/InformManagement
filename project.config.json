@@ -2,11 +2,11 @@
   "miniprogramRoot": "dist/",
   "projectname": "myApp",
   "description": "",
-  "appid": "wx918ded4620b3ec39",
+  "appid": "wx15a26fbbc963b6b9",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
-    "enhance": false,
+    "enhance": true,
     "postcss": false,
     "preloadBackgroundData": false,
     "minified": false,
@@ -23,7 +23,7 @@
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": false,
+    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -37,7 +37,7 @@
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": true
+    "minifyWXSS": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.16.0",

@@ -4,7 +4,11 @@
         :files="files"
         :onChange="onChange"
         />
+    <view class="channelCoverConfirm">
+      <AtButton circle type='secondary' :onClick="createNewChannel">选好了频道的封面</AtButton>
+    </view>
   </view>
+  
 </template>
 
 <script>
@@ -12,7 +16,7 @@
 
 import './channelCover.scss'
 import Taro from '@tarojs/taro';
-import { AtImagePicker } from 'taro-ui-vue'
+import { AtImagePicker, AtButton } from 'taro-ui-vue'
 
 // 1. 上传频道的封面 频道标题 频道标签 频道介绍
 // 2. 卡片形式？
@@ -22,28 +26,19 @@ export default {
   
 
   components: {
-    AtImagePicker
+    AtImagePicker,
+    AtButton
   },
-
-
 
 
   data () {
     return {
       files: [
         {
-          url: 'https://www.z4a.net/images/2021/04/20/user.png',
-        },
-        {
-          url: 'https://www.z4a.net/images/2021/04/20/avatar_black.jpg',
-        },
-        {
-          url: 'https://www.z4a.net/images/2021/04/20/avatar_white.jpg',
-        },
-        {
           type: 'btn'
         }
-      ]
+      ],
+
     }
   },
 
@@ -56,6 +51,9 @@ export default {
     },
     onImageClick (index, file) {
       console.log(index, file)
+    },
+    createNewChannel () {
+      console.log("尝试着提交了一下频道头像")
     }
   },
 

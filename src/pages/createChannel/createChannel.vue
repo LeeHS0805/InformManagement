@@ -2,107 +2,37 @@
   <view class="createChannel">
     <!-- 
       标题做成输入框 
-      封面单独拿出来一个界面 
-      频道标签 有样式 有参考
+      封面直接在当前页面选择上传
       频道介绍 好看一点的文本框
-      最后加一个btn 
-      -->
+    -->
       <view class="newchannelTitle">
         <AtInput
-          name='value1'
+          name='name'
           title='频道标题'
           type='text'
           placeholder='请输入创建的频道标题'
-          :value="value1" 
+          :value="name" 
           :onChange="handleInput"
         />
       </view>
       <view class="newchannelPhoto" >   
         <AtList>
           <AtListItem
-            title='频道封面'
-            arrow='right'
-            :onClick="tochannelCover"
+            title='添加频道封面'
           />
         </AtList>
       </view>
-      <view class="newchannelTags">
-        <view class="titleContainer">频道标签</view>
-        <view class="tagContainer">
-          <view class="tagSmallContainer">
-            <AtTag
-              name='tag-1'
-              type='primary'
-              circle
-              :onClick="onClick"
-            >tag-1
-            </AtTag>
-            <AtTag
-              name='tag-1'
-              type='primary'
-              circle
-              :onClick="onClick"
-            >tag-1
-            </AtTag>
-            <AtTag
-              name='tag-1'
-              type='primary'
-              circle
-              :onClick="onClick"
-            >tag-1
-            </AtTag>
-            <AtTag
-              name='tag-1'
-              type='primary'
-              circle
-              :onClick="onClick"
-            >tag-1
-          </AtTag>
-          </view>
-          <view class="tagSmallContainer">
-          <AtTag
-            name='tag-1'
-            type='primary'
-            circle
-            :onClick="onClick"
-          >tag-1
-          </AtTag>
-          <AtTag
-            name='tag-1'
-            type='primary'
-            circle
-            :onClick="onClick"
-          >tag-1
-          </AtTag>
-          <AtTag
-            name='tag-1'
-            type='primary'
-            circle
-            :onClick="onClick"
-          >tag-1
-          </AtTag>
-          <AtTag
-            name='tag-1'
-            type='primary'
-            circle
-            :onClick="onClick"
-          >tag-1
-          </AtTag>
-          </view>
-        </view>
-        
+      <view class="channelCover">
+      <AtImagePicker
+        :files="files"
+        :onChange="onChange"
+        :onFail="onFail"
+        :onImageClick="onImageClick"
+       />
       </view>
-      <view class="newchannelIntroduce">
-      <view class="titleContainer">频道介绍</view>
-        <AtTextarea
-          :value="value2"
-          :onChange="handleChange"
-          :maxLength="200"
-          placeholder='你的频道介绍是...'
-        />
-      </view>
+      
       <view class="createChannelBtn">
-      <AtButton circle type='secondary' :onClick="createNewChannel">创建一个新的频道</AtButton>
+      <AtButton circle type='secondary' :onClick="createNewChannel">创建新的频道</AtButton>
       </view>
   </view>
 </template>
@@ -111,16 +41,12 @@
 
 
 import './createChannel.scss'
-import Taro from '@tarojs/taro';
-import { AtImagePicker, AtInput, AtForm, AtList, AtListItem, AtTextarea, AtTag, AtButton } from 'taro-ui-vue'
+import Taro, { getStorageSync } from '@tarojs/taro';
+import request from '../../utills/request';
+import { AtToast, AtImagePicker, AtInput, AtForm, AtList, AtListItem, AtTextarea, AtTag, AtButton } from 'taro-ui-vue'
 
-
-// 1. 上传频道的封面  频道标题 频道标签 频道介绍
-// 2. 卡片形式？
-// 3. 频道其他的描述
 
 export default {
-  name: 'AtTagDemo',
   components: {
     AtImagePicker,
     AtInput,
@@ -129,37 +55,119 @@ export default {
     AtListItem,
     AtTextarea,
     AtTag,
-    AtButton
+    AtButton,
+    AtToast
   },
-
-
 
 
   data () {
     return {
-      value1: '',
-      value2: '',
+      name: '',
+      files: [
+        {
+          type: 'btn'
+        }
+      ],
+      operationType: '',
+      avatarImg: '',
+      index: 1,
     }
   },
 
   methods: {
     handleInput(val) {
-      this.value1 = val
+      this.name = val
     },
+
     tochannelCover() {
       Taro.navigateTo({
         url: '../channelCover/channelCover',
       })
     },
-    handleChange(value) {
-      this.value2 = value
+    
+    // 检测属性 计数器 ++ --  splice push 
+    onChange ( files, operationType, index ) {
+      this.files = files;
+      this.operationType = operationType;
+      this.index = index;
+     
+      if( operationType == 'add' ) {
+        Taro.setStorageSync('tmpFiles',this.files[0]);
+        files.splice(0,1);
+      } else if ( operationType == 'remove' ) {
+        files.unshift(Taro.getStorageSync('tmpFiles'));
+      }
+
+      (() => {
+        Taro.removeStorageSync('tmpFiles');
+      })
+
+      // 原写法备注 async
+      // await (()=>{
+      //   Taro.removeStorageSync('tmpFiles');
+      // })
     },
-    onClick() {
-      console.log('点击了')
+    
+    onFail (mes) {
+      console.log(mes);
+      console.log("图片选择失败！");
     },
-    createNewChannel() {
-      console.log('创建一个新的频道成功')
-    }
+    onImageClick (index, file) {
+      console.log(index, file);
+      console.log("点击了图片");
+    },
+    
+    async createNewChannel() {
+      console.log(this);
+      if(this.files[0].type != 'btn') {
+          const avatarImg = await new Promise((resolve, reject) => {
+          Taro.uploadFile({
+            url: 'http://49.232.223.89:50030/uploadImages', 
+            filePath: this.files[0].url,
+            name: 'file',
+            header: {
+              session: Taro.getStorageSync('session'),
+            },
+            success (res){
+              console.log(JSON.parse(res.data));
+              resolve(JSON.parse(res.data).data[0]);
+              Taro.reLaunch({
+                url: '../myChannel/myChannel',
+              })
+            },
+            fail (error) {
+              reject(error);
+            }
+          })
+        })
+         await request(
+          '/createGroup',
+          'POST',
+          {
+            "name": this.name,
+            "avatarImg": avatarImg,
+          },
+        );
+      } else {
+        await request(
+          '/createGroup',
+          'POST',
+          {
+            "name": this.name,
+          },
+        );
+        Taro.reLaunch({
+          url: '../myChannel/myChannel',
+        })
+      }
+    // 考虑后续加 AtToast 组件
+    // a! complex logic!
+    Taro.showToast({
+      title: '一个新的频道！'
+    })
+  },
+
+    
   },
 
   created () {

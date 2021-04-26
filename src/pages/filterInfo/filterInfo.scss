@@ -1,0 +1,49 @@
+.filterInfoContainer {
+    height: 100%;
+    .searchContainer {
+        height: 100px;
+    }
+    .categoryContainer {
+        height: 200px;
+        .panelTitle {
+            height: 80px;
+            padding-top: 30px;
+            padding-left: 20px;
+            position: relative;
+            border-left-style: solid;
+        }
+        /*整个一个大的picker*/
+        .pickerContainer {
+            // border: solid 6px royalblue;
+            height: 110px;
+            box-sizing: border-box;
+            /*左边的标题和右边的文字*/
+            .textContainer {
+                height: 60px;
+
+                /*左边的*/
+                .hintHeadline {
+                    // border: solid 6px tomato;
+                    height: 60px;
+                    width: 200px;
+                    position: relative;
+                    left: 10px;
+                    float: left;
+                    margin-top: 10px;
+                    padding-left: 20px;
+                }
+                .selectedHeadline {
+                    // border: solid 6px tomato;
+                    height: 60px;
+                    width: 200px;
+                    position: relative;
+                    float: right;
+                    margin-top: 10px;
+                    text-align: right;
+                    padding-right: 20px;
+                }
+            }
+            
+        }
+    }
+}
