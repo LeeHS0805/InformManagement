@@ -62,30 +62,31 @@ export default {
   },
   methods: {
     checkValue(data) {
-      let nameVerify = /^[\u4E00-\u9FA5]{2,4}$/;
-      let idVerify = /^(20)(\d{6})?$/;
-      for (let key in data) {
-        if (data[key] === undefined || data[key] === " ") {
-            Taro.atMessage({
-            message: '注册信息没填全哦',
-            type: 'warning',
-          }) 
-          return;
-        }
-      }
-      if (!idVerify.test(data.stdId)) {
-        Taro.atMessage({
-            message: '学号格式有误哦',
-            type: 'warning',
-        }) 
-        return;
-      } else if (!nameVerify.test(data.realName)) {
-        Taro.atMessage({
-            message: '姓名格式有误哦',
-            type: 'warning',
-        }) 
-        return;
-      }
+      // let nameVerify = /^[\u4E00-\u9FA5]{2,4}$/;
+      // // let idVerify = /^(20)(\d{6})?$/;
+      // console.log("11111")
+      // for (let key in data) {
+      //   if (data[key] === undefined || data[key] === " ") {
+      //       Taro.atMessage({
+      //       message: '注册信息没填全哦',
+      //       type: 'warning',
+      //     }) 
+      //     return;
+      //   }
+      // }
+      // if (!idVerify.test(data.stdId)) {
+      //   Taro.atMessage({
+      //       message: '学号格式有误哦',
+      //       type: 'warning',
+      //   }) 
+      //   return;
+      // } else if (!nameVerify.test(data.realName)) {
+      //   Taro.atMessage({
+      //       message: '姓名格式有误哦',
+      //       type: 'warning',
+      //   }) 
+      //   return;
+      // }
       return true;
     },
     handleInputstuId(res_stuId) {
