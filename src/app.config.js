@@ -1,7 +1,7 @@
 export default {
   pages: [
-    'pages/myChannel/myChannel',
     'pages/login/login',
+    'pages/myChannel/myChannel',
     'pages/profile/profile',
     'pages/myGroupDetail/myGroupDetail',
     'pages/filterInfo/filterInfo',

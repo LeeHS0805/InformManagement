@@ -12,10 +12,6 @@
     </view>
     <!-- 区域二显示列表 筛选 创建页面 加入频道-->
     <view class="userInfoNav">
-      <view class="navItem"  @tap="tofilterInfo">
-          <AtIcon value='equalizer' size='30' color='#7f8c8d' class="iconFont"></AtIcon>
-          <view class="itemName">筛选通知</view>
-      </view>
       <view class="navItem"  @tap="tocreateChannel">
           <AtIcon value='add-circle' size='30' color='#7f8c8d' class="iconFont"></AtIcon>
           <view class="itemName">创建频道</view>
