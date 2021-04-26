@@ -1,8 +1,9 @@
 export default {
   pages: [
+    'pages/profile/profile',
     'pages/login/login',
     'pages/myChannel/myChannel',
-    'pages/profile/profile',
+    
     'pages/myGroupDetail/myGroupDetail',
     'pages/filterInfo/filterInfo',
     'pages/createChannel/createChannel',
@@ -20,7 +21,7 @@ export default {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: 'WeChat',
-    navigationBarTextStyle: 'black'  ,
+    navigationBarTextStyle: 'black',
   },
 
   tabBar: {
