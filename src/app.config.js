@@ -1,14 +1,17 @@
 export default {
   pages: [
     'pages/login/login',
+    'pages/myChannel/myChannel',
     'pages/profile/profile',
+    'pages/myGroupDetail/myGroupDetail',
+    'pages/filterInfo/filterInfo',
+    'pages/createChannel/createChannel',
+    'pages/joinChannel/joinChannel',
+    'pages/register/register',
     'pages/launch/launch',
     'pages/addInform/addInform',
     'pages/inform/inform',
-    
     'pages/informDetail/informDetail',
-    'pages/createChannel/createChannel',
-    'pages/joinChannel/joinChannel',
     'pages/faq/faq',
     'pages/setting/setting',
   ],

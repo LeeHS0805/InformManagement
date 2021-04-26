@@ -6,14 +6,18 @@ async function innerRequest(){
   let val1 = await Taro.login()
 
   //向server传code
-  let val2 = await request('/login', "POST", {js_code: val1.code});
+  let val2 = await request('/login', "GET", {js_code: val1.code});
+  console.log(val2)
   if (!verifyRequest(val2.code, "code请求失败")) return null
   Taro.setStorageSync('session', val2.data.session);
-
-  //获取session
-  let val3 = await request('/test', 'GET');
-  if (!verifyRequest(val3.code, "session请求失败")) return null
-  return val3;
+  Taro.setStorageSync('isRegister',val2.data.isRegister);
+  if(val2.data.isRegister){
+    let url = `../inform/inform`
+    Taro.reLaunch({
+      url,
+    })
+    return true;
+  }else return false;
 }
 export default async function () {
   return new Promise(((resolve) => {

@@ -1,0 +1,11 @@
+.freAskedQuestions {
+    background-color: #bdc3c7;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .faqContainer {
+        margin-bottom: 20px;
+    }
+    .faqContainer:last-child {
+        margin-bottom: 0;
+    }
+}

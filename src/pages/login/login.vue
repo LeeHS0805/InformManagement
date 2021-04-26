@@ -13,7 +13,8 @@
     </swiper>
     </view>
     <view class="getUserInfoBtn">
-      <AtButton circle type='secondary' class="registerStu" :onClick="getUserProfile">点击进入</AtButton>
+      <AtButton circle type='secondary' class="registerUser" :onClick="getUserProfile">点击进入</AtButton>
+    <!-- openType="openSetting" -->
     </view>
   </view>
     
@@ -22,6 +23,7 @@
 <script>
 import './login.scss';
 import Taro from '@tarojs/taro';
+import wxLogin from '../../utills/wxLogin';
 import { AtButton } from 'taro-ui-vue';
 
 
@@ -48,37 +50,39 @@ export default {
 
   methods: {
     getUserProfile(e) {
-      // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
-      // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
      Taro.getUserProfile({
         desc: '用于完善个人资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
         success: (res) => {
           Taro.showToast({
-            title: '登录成功'
+            title: '成功授权'
           })
-          
-          Taro.setStorageSync(
-            'userBasic',res.userInfo
-          )
           console.log(res);
           console.log("成功获取用户头像和个人信息");
-          let url = `../inform/inform`
-          Taro.reLaunch({
-            url,
-          })
+          console.log(res.userInfo.avatarUrl);
+          console.log(res.userInfo.nickName);
+          // setTimeout(() => {
+           
+          // }, 2000);
         }
       })  
+      wxLogin().then(r=>{
+            console.log(r);
+            if(!r) {
+              if(!Taro.getStorageSync('isRegister')) {
+                let url = `../register/register`
+                  Taro.navigateTo({
+                    url,
+                })
+           }
+          }
+        });
     },
    
   },
   
   onLoad() {
-      // if (Taro.getUserProfile) {
-      //   this.setData({
-      //     canIUseGetUserProfile: true
-      //   })
-      // }
-    },
+      
+  },
   created () {
    
   }

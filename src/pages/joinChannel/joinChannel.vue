@@ -2,14 +2,15 @@
   <view class="joinChannel">
       <view class="iptCode">
         <AtInput
-            name='value'
+            name='friendCode'
             title='邀请码'
             type='text'
             placeholder='请输入频道邀请码'
-            :value="value"
+            :value="friendCode"
             :onChange="handleInput"
             />
-        <AtButton type='primary' circle formType='submit' :onClick="onSubmit">提交</AtButton>
+        <button type='primary' circle form-type="submit" @tap="onSubmit()">加入频道</button>
+
       </view>
     
   </view>
@@ -19,13 +20,13 @@
 
 import './joinChannel.scss';
 import Taro from '@tarojs/taro';
+import request from '../../utills/request';
 import { AtInput, AtForm, AtButton } from 'taro-ui-vue'
 
 export default {
-  name: 'AtInputInvitation',
   data() {
     return {
-      value: '',
+      friendCode: '',
     }
   },
 
@@ -37,11 +38,41 @@ export default {
 
   methods: {
     handleInput(val) {
-      this.value = val
+      this.friendCode = val;
     },
-    onSubmit (event) {
-      console.log(this.value)
+    onSubmit () {
+      console.log(this.friendCode);
+      request(
+        '/enterGroupByCode',
+        'GET',
+        {
+          "friendCode":this.friendCode
+        },
+      );
+      Taro.showToast({
+        title: '成功加入频道'
+      });
+        // success: (open) => {
+        //   console.log(open.data);
+        //   Taro.request({
+        //     url: '',
+        //     // 授权登录接口
+        //     data: {
+        //       openid: open.data.openid,
+        //       avatar: open.userInfo.avatarUrl,
+        //       userName: open.userInfo.nickName
+        //     },
+        //     success: (data) => {
+        //       console.log(data.data);
+        //     },
+        //     error: ()=>{
+        //       console.log("出大错了！");
+        //     }
+        //   })
+        // }
+      
     },
+             
   },
 }
 </script>
