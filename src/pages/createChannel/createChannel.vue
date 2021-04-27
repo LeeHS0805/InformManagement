@@ -122,7 +122,7 @@ export default {
       if(this.files[0].type != 'btn') {
           const avatarImg = await new Promise((resolve, reject) => {
           Taro.uploadFile({
-            url: 'http://49.232.223.89:50030/uploadImages', 
+            url: 'https://clayex.com/uploadImages', 
             filePath: this.files[0].url,
             name: 'file',
             header: {

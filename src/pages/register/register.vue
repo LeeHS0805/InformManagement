@@ -23,14 +23,7 @@
         </AtForm>
         </view>
         <view class="alreadyFilled">
-            <!-- 方案一 不使用taro ui AtButton 用的tag-->
             <button type='primary' circle form-type="submit" @tap="onSubmit()">我填好了</button>
-           
-            <!-- 方案三 把onClick换成tap 能保证样式 目测-报错 但是没有加form-type 不保证交互一定有效-->
-            <!-- <AtButton type='primary' circle :tap="onSubmit()">我填好了</AtButton> -->
-            <!-- 原方案 已证明报错 -->
-            <!-- <AtButton type='primary' circle formType='submit' :onClick="onSubmit">我填好了</AtButton> -->
-
         </view>
       <AtMessage />
   </view>
@@ -48,8 +41,8 @@ export default {
   data() {
     return {
      inform: {
-        stuId: '',
         realName: '',
+        stuId: '',
         jsCode: ''     
       }
     }
@@ -61,32 +54,24 @@ export default {
     AtMessage
   },
   methods: {
-    checkValue(data) {
-      // let nameVerify = /^[\u4E00-\u9FA5]{2,4}$/;
-      // // let idVerify = /^(20)(\d{6})?$/;
-      // console.log("11111")
-      // for (let key in data) {
-      //   if (data[key] === undefined || data[key] === " ") {
-      //       Taro.atMessage({
-      //       message: '注册信息没填全哦',
-      //       type: 'warning',
-      //     }) 
-      //     return;
-      //   }
-      // }
-      // if (!idVerify.test(data.stdId)) {
-      //   Taro.atMessage({
-      //       message: '学号格式有误哦',
-      //       type: 'warning',
-      //   }) 
-      //   return;
-      // } else if (!nameVerify.test(data.realName)) {
-      //   Taro.atMessage({
-      //       message: '姓名格式有误哦',
-      //       type: 'warning',
-      //   }) 
-      //   return;
-      // }
+    checkValue(inform) {
+      let nameVerify = /^[\u4E00-\u9FA5]{2,4}$/;
+      let idVerify = /^(20)(\d{6})?$/;
+      if (!idVerify.test(inform.stuId)) {
+        console.log(inform.stuId);
+        console.log(idVerify.test(inform.stuId));
+        Taro.atMessage({
+            message: '再仔细看看学号哦',
+            type: 'warning',
+        }) 
+        return;
+      } else if (!nameVerify.test(inform.realName)) {
+        Taro.atMessage({
+            message: '再仔细看看姓名哦',
+            type: 'warning',
+        }) 
+        return;
+      }
       return true;
     },
     handleInputstuId(res_stuId) {
@@ -96,7 +81,6 @@ export default {
       this.inform.realName = res_realName;
     },
     async onSubmit () {
-      // 验证 正则
       if(this.checkValue(this.inform)) {
         const res = await Taro.login();
         console.log(res.code);
@@ -107,14 +91,13 @@ export default {
           this.inform,
         );
         // 注册后自动登录
-        wxLogin();
-        console.log(this.inform);
-        Taro.showToast({
-          title: '已收到'
-        });
-        Taro.switchTab({
-          url: '../inform/inform'
-        });
+        const registerSuccess = await wxLogin();
+        if(registerSuccess) {
+          console.log(this.inform);
+          Taro.switchTab({
+            url: '../inform/inform'
+          });
+        }  
       } 
     },
              
