@@ -3,7 +3,7 @@ export default {
     'pages/profile/profile',
     'pages/login/login',
     'pages/myChannel/myChannel',
-    
+    'pages/feedback/feedback',
     'pages/myGroupDetail/myGroupDetail',
     'pages/filterInfo/filterInfo',
     'pages/createChannel/createChannel',
