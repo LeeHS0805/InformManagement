@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,SAAS;EACP,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,MAAM;EAClB,aAAa,EAAE,IAAI;EACnB,YAAY,EAAE,IAAI;EAClB,KAAK,EAAC,KAAK;EACX,SAAS,EAAE,IAAI;EACf,cAAc,EAAE,GAAG;EACnB,OAAO,EAAE,GAAG",
-"sources": ["Priority.scss"],
-"names": [],
-"file": "Priority.css"
-}
