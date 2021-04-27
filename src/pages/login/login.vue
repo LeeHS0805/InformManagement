@@ -1,6 +1,7 @@
 <template>
   <view class="registerIdConfirm">
-    <view class="registerBackground">
+    <AtToast :isOpened="isLoading" text="加载中" status="loading"></AtToast>
+    <view class="registerBackground">      
     <swiper
       current="current"
       :duration="duration"
@@ -12,10 +13,6 @@
       </swiper-item>
     </swiper>
     </view>
-    <view class="getUserInfoBtn">
-      <AtButton circle type='secondary' class="registerUser" :onClick="getUserProfile">点击进入</AtButton>
-    <!-- openType="openSetting" -->
-    </view>
   </view>
 
 </template>
@@ -24,13 +21,14 @@
 import './login.scss';
 import Taro from '@tarojs/taro';
 import wxLogin from '../../utills/wxLogin';
-import { AtButton } from 'taro-ui-vue';
+import { AtButton, AtToast } from 'taro-ui-vue';
 
 
 export default {
   name: 'SwiperLogin',
   data() {
     return {
+      isLoading: true,
       current: 1,
       duration: 500,
       interval: 3000,
@@ -46,45 +44,27 @@ export default {
 
   components: {
     AtButton,
+    AtToast
   },
 
   methods: {
-    async getUserProfile(e) {
-     await Taro.getUserProfile({
-        desc: '用于完善个人资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-        success: (res) => {
-          Taro.showToast({
-            title: '成功授权'
-          })
-          console.log(res);
-          console.log("成功获取用户头像和个人信息");
-          console.log(res.userInfo.avatarUrl);
-          console.log(res.userInfo.nickName);
-          // setTimeout(() => {
 
-          // }, 2000);
-        }
-      })
-      wxLogin().then(r=>{
-            console.log(r);
-            if(!r) {
-              if(!Taro.getStorageSync('isRegister')) {
-                let url = `../register/register`
-                  Taro.navigateTo({
-                    url,
-                })
-           }
-          }
-        });
-    },
-
+   
   },
-
-  onLoad() {
-
+  
+  async onLoad() {
+    if(await wxLogin()){
+      // console.log("进来了");
+      let url = `../inform/inform`
+      Taro.switchTab({
+          url,
+      })
+    }else {
+      // console.log("进来了222s");
+      this.isLoading = false;
+    }
   },
   created () {
-
   }
 }
 </script>
