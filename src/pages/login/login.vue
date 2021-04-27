@@ -1,6 +1,6 @@
 <template>
   <view class="registerIdConfirm">
-    <view class="registerBackground">   
+    <view class="registerBackground">
     <swiper
       current="current"
       :duration="duration"
@@ -17,7 +17,7 @@
     <!-- openType="openSetting" -->
     </view>
   </view>
-    
+
 </template>
 
 <script>
@@ -49,8 +49,8 @@ export default {
   },
 
   methods: {
-    getUserProfile(e) {
-     Taro.getUserProfile({
+    async getUserProfile(e) {
+     await Taro.getUserProfile({
         desc: '用于完善个人资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
         success: (res) => {
           Taro.showToast({
@@ -61,10 +61,10 @@ export default {
           console.log(res.userInfo.avatarUrl);
           console.log(res.userInfo.nickName);
           // setTimeout(() => {
-           
+
           // }, 2000);
         }
-      })  
+      })
       wxLogin().then(r=>{
             console.log(r);
             if(!r) {
@@ -77,14 +77,14 @@ export default {
           }
         });
     },
-   
+
   },
-  
+
   onLoad() {
-      
+
   },
   created () {
-   
+
   }
 }
 </script>

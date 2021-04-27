@@ -106,7 +106,7 @@ export default {
       ],
       selectorValue: [],        //picker选中的信息 [0]优先级 [1]adminGroup [2]deadline
       inform: {                 //表单提交对象
-        title: '',
+        title: ' ',
         content: '',
         relatedGroup: [],
         tag: [],

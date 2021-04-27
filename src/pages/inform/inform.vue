@@ -4,7 +4,7 @@
       <AtCalendar :minDate="minDate" :maxDate="maxDate" :marks="['2021/3/31']"
                   :onSelectDate="changeDate"/>
     </view>
-    <filterInform></filterInform>
+    <filterInform @priority="filter"></filterInform>
     <informCard :informArray="this.informArray" :noInform="noInform"></informCard>
   </view>
 </template>
@@ -31,6 +31,9 @@ export default {
       noInform: true,        //判断今日是否存在通知
       informArray: [],        //存储通知信息
       focusDate: today(),      //日历目前触发的日期
+      priorityByFilter:null,
+      startTimeByFilter:null,
+      endTimeByFilter:null,
     }
   },
   methods: {
@@ -40,6 +43,7 @@ export default {
         await Taro.showToast({title: '加载中', icon: 'loading', duration: 2000})
         let {data: {docs, pageTotal}} = await request('/getMyInformByDate', 'get', {date, page: this.page})
         this.pageTotal = pageTotal
+        docs = this.filterInfo(docs)
         this.showInformImg(docs)
         setTimeout(() => {
           Taro.stopPullDownRefresh()
@@ -73,14 +77,28 @@ export default {
     clearPage() {
       this.page = 1
       this.pageTotal = 0
+    },
+    filter(data){
+      if(data.type=0)this.priorityByFilter=data.value
+      else if(data.type=1)this.startTimeByFilter=data.value
+      else if(data.type=2) this.endTimeByFilter=data.value
+
+    },
+    filterInfo(docs){
+      if(this.priorityByFilter){
+          docs.filter(item=>{
+            if(item.priority==this.priorityByFilter-1){
+              return true
+            }
+            else return false;
+          })
+      }
+      return docs
     }
   },
   //onLoad触发一次登录请求
   async onLoad() {
-    // await Taro.setEnableDebug({
-    //   enableDebug:true
-    // })
-    await wxLogin()
+    if(Taro.getStorageSync('session'))await wxLogin()
   },
   async onShow(){
     this.clearPage()
