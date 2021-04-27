@@ -9,7 +9,6 @@
     </view>
     <view class="btnBottom">
       <AtButton type='primary' circle :onClick="toLogin">退出登录</AtButton>
-      <!-- :onclick="logout" -->
     </view>
     <view class="copyrightBottom">
       ©2021-布吉岛

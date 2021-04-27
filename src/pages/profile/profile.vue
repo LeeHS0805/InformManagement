@@ -8,7 +8,6 @@
         <view class="userRealName">{{userInfo.realName}}</view>
       </view>
     </view>
-    <!-- 区域二显示列表 筛选 创建页面 加入频道-->
     <view class="userInfoNav">
       <view class="navItem"  @tap="tocreateChannel">
           <AtIcon value='add-circle' size='30' color='#7f8c8d' class="iconFont"></AtIcon>
@@ -22,17 +21,9 @@
           <AtIcon value='star-2' size='30' color='#7f8c8d' class="iconFont"></AtIcon>
           <view class="itemName">我的频道</view>
       </view>
-      <!-- @click="showMyGroup(index)" -->
     </view>
-     <!-- 区域三显示列表 常见问题 向我们反馈 设置 -->
     <view class="userInfoMore">
       <AtList>
-        <AtListItem
-          title='常见问题'
-          arrow='right'
-          :iconInfo="{ size: 25, color: '#78A4FA', value: 'search', }"
-          :onClick="tofreAskedQuestions"
-        />
        <AtListItem
           title='向我们反馈'
           arrow='right'
@@ -57,7 +48,7 @@
 import './profile.scss';
 import Taro from '@tarojs/taro';
 import request from '../../utills/request';
-import { AtAvatar, AtIcon, AtButton, AtList, AtListItem } from 'taro-ui-vue';
+import { AtIcon, AtButton, AtList, AtListItem } from 'taro-ui-vue';
 
 
 export default {
@@ -68,7 +59,6 @@ export default {
   },
 
   components: {
-    AtAvatar,
     AtIcon,
     AtButton,
     AtList,
@@ -99,11 +89,6 @@ export default {
     toSetting() {
       Taro.navigateTo({
         url: '../setting/setting',
-      })
-    },
-    tofreAskedQuestions() {
-      Taro.navigateTo({
-        url: '../faq/faq',
       })
     },
     tofilterInfo() {

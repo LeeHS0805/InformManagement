@@ -16,7 +16,9 @@ import "taro-ui/dist/style/components/flex.scss";
 import "taro-ui/dist/style/components/list.scss";
 import "taro-ui/dist/style/components/icon.scss";
 import "taro-ui/dist/style/components/card.scss";
-
+import "taro-ui-vue/dist/style/components/fab.scss";
+import "taro-ui-vue/dist/style/components/float-layout.scss";
+import "taro-ui-vue/dist/style/components/message.scss";
 // Taro.setEnableDebug({
 //   enableDebug:true
 // })

@@ -66,6 +66,16 @@
   .noGroupContainer{
     width: 100%;
     height: 100vh;
+    .noGroupText {
+     position: fixed;
+      font-size: 45px;
+      font-weight: 800;
+      color: whitesmoke;
+      top: 100px;
+      width: 100%;
+      height: 300px;
+      text-align: center;
+    }
     .noGroupImage{
       border-radius: 6px;
       width: 100%;

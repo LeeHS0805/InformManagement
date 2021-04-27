@@ -1,34 +1,33 @@
 <template>
   <view class="myGroupDetailContainer">
-     <!-- 群组封面 在最上面 -->
      <view class="groupDetailBanner" v-for="(items,index) in myGroupDetail" :key="index">
-       <image class="bannerContainer" :src="getImgUrl(items)"></image>
+       <image class="bannerContainer" mode="aspectFill" :src="getImgUrl(items)"></image>
      </view>
-     <!-- 群组名 + 创建人 + 创建人学号 + 创建日期 圆角框  -->
      <view class="basicInfomations">
        <!-- 群组名 -->
        <view class="groupDetailName ellipsis-2">
          {{myGroupDetail[0].name}}
 
        </view>
-       <!-- 其他基本群组信息 -->
        <view class="groupDetailOthers">
          <view class="leftContainer">
-           <!-- 创建人姓名 -->
             <AtIcon value='star' size='30' color='#7f8c8d' class="iconFontLeftTop"></AtIcon>
-            <text class="tagName">创建人姓名</text>
-            <view class="groupCreatorName">
-              {{myGroupDetail[0].creatorName}}
-            </view>
-            <!-- 创建人学号 -->
-             <AtIcon value='numbered-list' size='30' color='#7f8c8d' class="iconFontLeftBtm"></AtIcon>
-            <text class="tagName">创建人学号</text>
-            <view class="groupCreatorId">
-              {{myGroupDetail[0].creator}}
+            <view class="leftTopContainer">
+              <text class="tagNameTop">创建人姓名</text>
+              <view class="groupCreatorName">
+                {{myGroupDetail[0].creatorName}}
               </view>
+            </view>
+             <AtIcon value='numbered-list' size='30' color='#7f8c8d' class="iconFontLeftBtm"></AtIcon>
+            <view class="leftBtmContainer">
+              <text class="tagNameBtm">创建人学号</text>
+              <view class="groupCreatorId">
+                {{myGroupDetail[0].creator}}
+              </view>
+            </view>
+            
          </view>
          <view class="rightContainer">
-           <!-- 创建日期 -->
             <AtIcon value='clock' size='30' color='#7f8c8d' class="iconFontRight"></AtIcon>
            <text class="tagName tagNameRight">创建日期</text>
            <view class="groupCreateTime">
@@ -36,24 +35,20 @@
              </view>
          </view>
        </view>
-      <!-- 群组管理员 -->
         <view class="groupAdmins">
           <text class="tagNameBtm">群组管理员</text>
           <view class="groupAdminsContainer">
             <view v-for="(item,index) in myGroupDetail[0].admins" :key="index">
               {{item.realName}}
             </view>
-
           </view>
         </view>
-        <!-- 群组成员 -->
         <view class="groupMembers ellipsis-3">
           <text class="tagNameBtm">群组成员</text>
           <view class="groupMembersContainer">
             <view v-for="(item,index) in myGroupDetail[0].members" :key="index"> {{item.realName}}</view>
           </view>
         </view>
-        <!-- 管理员权限 条件渲染 -->
           <view class="fabContainer" v-if="isAdminVerify">
             <AtFab :onClick="onButtonClick">
               <text>管理员</text>
@@ -64,7 +59,6 @@
             :isOpened="setIsOpened"
             :onClose="handleClose"
           >
-        <!-- 渲染 查看邀请码 和 添加管理员 增加复制功能 -->
           <view class="addAdmins">
               <view class="getFriendCode">
                 <text class="viewCode">我的邀请码</text>
@@ -138,15 +132,12 @@ export default {
       this.setIsOpened = false;
 
     },
-
     handleInputuserId(res_userId) {
       this.userId = res_userId;
 
     },
-
     onButtonClick() {
       this.setIsOpened = true;
-
     },
     async addAdmin() {
        let verifyCode = await request(
@@ -170,7 +161,7 @@ export default {
           })
       } else if (verifyCode===50002){
           Taro.atMessage({
-          message: '用户已在权限列表',
+          message: '用户不在本群组或已成为管理员',
           type: 'warning',
         })
       }
@@ -178,7 +169,6 @@ export default {
   },
   async onLoad() {
     let groupId = Taro.getStorageSync('groupId');
-
     // Taro.removeStorageSync('groupId');
     let myGroupDetailData = await request(
         '/getGroupDetail',

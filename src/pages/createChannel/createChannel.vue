@@ -97,11 +97,6 @@ export default {
       } else if ( operationType == 'remove' ) {
         files.unshift(Taro.getStorageSync('tmpFiles'));
       }
-
-      // 原写法备注 async
-      // await (()=>{
-      //   Taro.removeStorageSync('tmpFiles');
-      // })
     },
 
     onFail (mes) {
@@ -113,7 +108,6 @@ export default {
     },
 
     async createNewChannel() {
-
       if(this.files[0].type != 'btn') {
           const avatarImg = await new Promise((resolve, reject) => {
           Taro.uploadFile({
@@ -124,11 +118,7 @@ export default {
               session: Taro.getStorageSync('session'),
             },
             success (res){
-
               resolve(JSON.parse(res.data).data[0]);
-              Taro.reLaunch({
-                url: '../myChannel/myChannel',
-              })
             },
             fail (error) {
               reject(error);
@@ -151,19 +141,16 @@ export default {
             "name": this.name,
           },
         );
-        Taro.reLaunch({
-          url: '../myChannel/myChannel',
-        })
       }
-    // 考虑后续加 AtToast 组件
-    // a! complex logic!
-    Taro.showToast({
-      title: '一个新的频道！'
-    })
+      Taro.reLaunch({
+        url: '../myChannel/myChannel',
+      })
+      Taro.showToast({
+        title: '一个新的频道！'
+      })
+    },
   },
 
-
-  },
 
   created () {
 

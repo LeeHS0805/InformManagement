@@ -18,6 +18,7 @@
       </view>
     </view>
     <view class="noGroupContainer" v-else>
+      <text class="noGroupText">去创建或者加入一个频道吧</text>
       <image class="noGroupImage" src="https://www.z4a.net/images/2021/04/11/test.jpg"></image>
     </view>
 
@@ -34,7 +35,7 @@ export default {
   data() {
     return {
       myGroupList: [
-
+        1
       ],
       myAdminGroupList: [
 
@@ -57,7 +58,6 @@ export default {
       })
     }
   },
-  // 与原生相比 onLoad: async function (options) 有无区别
   async onLoad() {
     let myGroupListData = await request('/getMyGroup');
     this.myGroupListData = myGroupListData;
