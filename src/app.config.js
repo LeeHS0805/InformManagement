@@ -4,6 +4,7 @@ export default {
     'pages/register/register',
     'pages/profile/profile',
     'pages/myChannel/myChannel',
+    'pages/feedback/feedback',
     'pages/myGroupDetail/myGroupDetail',
     'pages/createChannel/createChannel',
     'pages/joinChannel/joinChannel',

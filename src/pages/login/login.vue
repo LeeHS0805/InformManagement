@@ -1,7 +1,7 @@
 <template>
   <view class="registerIdConfirm">
     <AtToast :isOpened="isLoading" text="加载中" status="loading"></AtToast>
-    <view class="registerBackground">   
+    <view class="registerBackground">      
     <swiper
       current="current"
       :duration="duration"
@@ -14,7 +14,7 @@
     </swiper>
     </view>
   </view>
-    
+
 </template>
 
 <script>
@@ -48,6 +48,7 @@ export default {
   },
 
   methods: {
+
    
   },
   
@@ -64,7 +65,6 @@ export default {
     }
   },
   created () {
-    
   }
 }
 </script>

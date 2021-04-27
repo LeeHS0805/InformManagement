@@ -37,9 +37,9 @@
   "dependencies": {
     "@babel/runtime": "^7.7.7",
     "@tarojs/components": "3.2.0",
+    "@tarojs/plugin-platform-weapp": "^3.2.0",
     "@tarojs/runtime": "3.2.0",
     "@tarojs/taro": "3.2.0",
-    "moment": "^2.29.1",
     "node-sass": "^4.14.1",
     "taro-ui-vue": "^1.0.0-beta.10",
     "vue": "^2.5.0",

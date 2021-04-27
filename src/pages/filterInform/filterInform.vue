@@ -6,27 +6,29 @@
           mode='selector'
           :range="selector"
           :value="this.inform.priority"
-          @change="handleChange($event)"
+          @change="handleChange($event,'priority')"
         >
-          <view>优先级</view>
+          <view>{{inform.priority!=0?selector[inform.priority]:`优先级`}}</view>
         </picker>
       </view>
       <view class='flex-column select-item'>
         <picker
-          mode='date'
+          mode='selector'
+          :range="selectorTime"
           :value="inform.startDate"
-          @change="handleChangeTime"
+          @change="handleChange($event,'startDate')"
         >
-          <view>创建时间</view>
+          <view>{{inform.startDate!=0?selectorTime[inform.startDate]:`创建时间` }}</view>
         </picker>
       </view>
       <view class='flex-column select-item'>
         <picker
-          mode='date'
+          mode='selector'
+          :range="selectorTime"
           :value="inform.endDate"
-          @change="handleChange"
+          @change="handleChange($event,'endDate')"
         >
-          <view>截止时间</view>
+          <view>{{inform.endDate!=0?selectorTime[inform.endDate]:"截止时间"}}</view>
         </picker>
       </view>
     </view>
@@ -41,7 +43,8 @@ export default {
   data() {
     return {
       value1: '',
-      selector: ['0 普通', '1 重要', '2 紧急'],
+      selector: ['','普通', '重要', '紧急'],
+      selectorTime:['','升序','降序'],
       selectorValue: '',
       inform: {
         startDate: '',
@@ -51,9 +54,14 @@ export default {
     }
   },
   methods: {
-    handleChange(e) {
-      this.inform.priority = e.detail.value
-      console.log(this.inform.priority)
+    handleChange(e,str) {
+      this.inform[str] = e.detail.value
+      let type ;
+      if(str=='priority') type=0;
+      else if(str=='startDate') type=1;
+      else if (str=='endDate')type=2;
+      console.log(str,type)
+      this.$emit('priority', {value: e.detail.value,type})
     },
     handleChangeTime() {
 
