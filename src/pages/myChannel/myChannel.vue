@@ -1,21 +1,26 @@
 <template>
   <view class="myChannelContainer">
     <!-- 一个群组的卡片  -->
-    <view class="groupCard" v-for="items in myGroupList" :key="items.groupId"  @tap="getGroupDetail(items.groupId)">
-      <view class="groupName ellipsis-2">{{items.name}}</view>
-       <view class="groupIdContainer">
-         <text>GroupID:</text>
-         {{items.groupId}}
-       </view>
-      <view class="groupMembersNum">
-        <text>群组成员数:</text>
-        {{items.members.length}}
+    <view class="groupCardContainer" v-if="myGroupList.length">
+      <view class="groupCard" v-for="(items,index) in myGroupList" :key="index"  @tap="getGroupDetail(index)">
+        <view class="groupName ellipsis-2">{{items.name}}</view>
+        <view class="groupIdContainer">
+          <text>GroupID:</text>
+          {{items.groupId}}
+        </view>
+        <view class="groupMembersNum">
+          <text>群组成员数:</text>
+          {{items.members.length}}
+        </view>
+        <view class="groupCover">
+          <image class="coverContainer" :src="getImgUrl(items)"></image>
+        </view>
       </view>
-      <view class="groupCover">
-        <image class="coverContainer" :src="getImgUrl(items)"></image>
-      </view> 
     </view>
- 
+    <view class="noGroupContainer" v-else>
+      <image class="noGroupImage" src="https://www.z4a.net/images/2021/04/11/test.jpg"></image>
+    </view>
+
   </view>
 </template>
 <script>
@@ -29,16 +34,16 @@ export default {
   data() {
     return {
       myGroupList: [
-        
+
       ],
       myAdminGroupList: [
-        
+
       ],
     }
   },
- 
+
   components: {
-   
+
   },
   methods: {
     getImgUrl(items){
@@ -46,27 +51,17 @@ export default {
       return url;
     },
     getGroupDetail(e) {
-      Taro.setStorageSync('groupId',this.myGroupList[e-1].groupId);
+      Taro.setStorageSync('groupId',this.myGroupList[e].groupId);
       Taro.navigateTo({
         url: '../myGroupDetail/myGroupDetail',
       })
-    }    
+    }
   },
   // 与原生相比 onLoad: async function (options) 有无区别
   async onLoad() {
-    console.log("onLoad");
     let myGroupListData = await request('/getMyGroup');
     this.myGroupListData = myGroupListData;
     this.myGroupList = myGroupListData.data;
-  },
-  onShow() {
-     
-  },
-  created() {
-
-  },
-  mounted() {
-  
   }
 }
 </script>

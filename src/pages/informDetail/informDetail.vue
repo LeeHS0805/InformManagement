@@ -106,7 +106,7 @@ export default {
     showImg(imgSrc) {
       this.imgSrc = imgSrc
       // this.isShowImg = true
-      console.log(this.inform.resources)
+
       Taro.previewImage({
         current: imgSrc, // 当前显示图片的http链接
         showmenu:true,
@@ -114,7 +114,7 @@ export default {
             return `http://49.232.223.89:50030/${this.inform.resources}`
         }) ,// 需要预览的图片http链接列表
         fail(res){
-          console.log(res)
+
         }
       })
     },
@@ -123,7 +123,7 @@ export default {
     },
     saveImage(){
       if(this.isSaveImage){
-        console.log(this.imgSrc)
+
         Taro.saveImageToPhotosAlbum({
           filePath:this.imgSrc,
           success(){

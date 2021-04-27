@@ -62,7 +62,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.informArray)
+    (this.informArray)
   },
   components:{
     Priority

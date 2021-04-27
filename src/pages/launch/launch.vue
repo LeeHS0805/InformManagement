@@ -50,14 +50,14 @@ export default {
 
   methods: {
     go(str){
-      console.log(str)
+
       Taro.navigateTo({
         url:`../../pages/${str}/${str}`
       })
     },
     onChange(key, value, a) {
       this[key] = value
-      console.log(this.searchValue, a)
+
     },
     onActionClick() {
 

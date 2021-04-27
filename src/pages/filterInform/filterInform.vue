@@ -60,7 +60,7 @@ export default {
       if(str=='priority') type=0;
       else if(str=='startDate') type=1;
       else if (str=='endDate')type=2;
-      console.log(str,type)
+
       this.$emit('priority', {value: e.detail.value,type})
     },
     handleChangeTime() {

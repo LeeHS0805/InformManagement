@@ -93,13 +93,13 @@ export default {
     shiftList(item, index, event) {
       this.infoList.splice(index, 1);
       this.infoList.forEach((item,index)=>{
-        console.log(this.infoList[index])
+
         this.$set(this.infoList,index,this.infoList[index])
       })
       this.info[item].detail = '';
       this.focusIndex = 0;
       this.focusAll[item] = 0;
-      console.log(this.focusAll[item])
+
       this.$set(this.focusAll,item,this.focusAll[item])
     },
     isAllZero(array){
@@ -124,7 +124,7 @@ export default {
       } else return false;
     },
     showText: function () {
-      console.log(this.focusIndex+' 111')
+
       return this.focusIndex == 0 || this.isAllZero(this.focusAll)?'请选择类型后,在此处添加内容描述':'此处可以描述' + this.info[this.focusIndex].type + '问题细节';
     },
   },

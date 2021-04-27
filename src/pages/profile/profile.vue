@@ -1,13 +1,11 @@
 <template>
   <view class="userInfoContainer">
-    <!-- 三个区域 -->
-    <!-- 区域一显示头像和名称 以及背景图片 -->
     <view class="userInfoBasic">
       <view class="userAvator">
         <open-data type="userAvatarUrl"></open-data>
       </view>
       <view class="userNameContainer">
-        <open-data type="userNickName"></open-data>
+        <view class="userRealName">{{userInfo.realName}}</view>
       </view>
     </view>
     <!-- 区域二显示列表 筛选 创建页面 加入频道-->
@@ -38,6 +36,7 @@
        <AtListItem
           title='向我们反馈'
           arrow='right'
+          :onClick="toFeedback"
           :iconInfo="{ size: 25, color: '#78A4FA', value: 'check-circle', }"
         />
         <AtListItem
@@ -47,23 +46,24 @@
           :onClick="toSetting"
         />
       </AtList>
-      
+
     </view>
-    
+
   </view>
-  
+
 </template>
 
 <script>
 import './profile.scss';
 import Taro from '@tarojs/taro';
+import request from '../../utills/request';
 import { AtAvatar, AtIcon, AtButton, AtList, AtListItem } from 'taro-ui-vue';
 
 
 export default {
   data() {
       return{
-
+        userInfo: {}
       }
   },
 
@@ -91,6 +91,11 @@ export default {
         url: '../joinChannel/joinChannel',
       })
     },
+    toFeedback(){
+      Taro.navigateTo({
+        url: '../feedback/feedback',
+      })
+    },
     toSetting() {
       Taro.navigateTo({
         url: '../setting/setting',
@@ -107,48 +112,27 @@ export default {
       })
     },
     tomyChannel() {
-      // await request(
-      //   '/getMyGroup',
-      //   'GET',
-      // ).then(resMyGroup=>{
-      //   console.log('getMyGroup',resMyGroup);
-      //   console.log('getMyGroup res.data',resMyGroup.data);
-      //   console.log(resMyGroup.data[0]);
-      //   Taro.setStorageSync('getMyGroup',resMyGroup.data);
-      // })
-        
-
-      // await request(
-      //   '/getMyAdminGroup',
-      //   'GET',
-      // ).then(resAdminGroup=>{
-      //   console.log('getMyAdminGroup',resAdminGroup);
-      //   console.log('getMyAdminGroup res.data',resAdminGroup.data);
-      //   Taro.setStorageSync('getMyAdminGroup',resAdminGroup.data);
-      // })
-      
-      // 传一个 name 和 id 
       Taro.navigateTo({
         url: '../myChannel/myChannel',
-        // url: '../myChannel/myChannel?data=${encodeURIComponent(data)}',
-
       })
     },
   },
   onShow(){
-    
+
   },
-  onload : function (options) {
-    
+  async onLoad (options) {
+
+    this.userInfo = (await request(
+      '/getMyInfo',
+      'Get'
+    )).data;
   },
- 
+
   created () {
-    // this.$router.push({
-    
-    // })
+
 } ,
   mounted(){
-    
+
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <view class="registerIdConfirm">
     <AtToast :isOpened="isLoading" text="加载中" status="loading"></AtToast>
-    <view class="registerBackground">      
+    <view class="registerBackground">
     <swiper
       current="current"
       :duration="duration"
@@ -49,18 +49,18 @@ export default {
 
   methods: {
 
-   
+
   },
-  
+
   async onLoad() {
     if(await wxLogin()){
-      // console.log("进来了");
+
       let url = `../inform/inform`
       Taro.switchTab({
-          url,
+        url
       })
     }else {
-      // console.log("进来了222s");
+
       this.isLoading = false;
     }
   },

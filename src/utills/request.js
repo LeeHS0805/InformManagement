@@ -13,7 +13,7 @@ export default function (url = '', method = 'GET', param = null) {
       },
       async success(info) {
         if(info.data.data&&info.data.data.isRegister===false) resolve(info.data);
-        console.log(1111111111111,info.data);
+
         if(info.data.code!=50000||typeof info.data =="undefined"){
           Taro.hideToast()
           setTimeout(()=>{

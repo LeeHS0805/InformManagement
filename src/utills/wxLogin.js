@@ -22,7 +22,7 @@ async function innerRequest() {
 
   if(val2==null) return false;
 
-  
+
 
   //判断是否注册
   if (!val2.data.isRegister) {

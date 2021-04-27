@@ -43,33 +43,31 @@ export default {
      inform: {
         realName: '',
         stuId: '',
-        jsCode: ''     
+        jsCode: ''
       }
     }
   },
- 
+
   components: {
-    AtInput, 
+    AtInput,
     AtForm,
     AtMessage
   },
   methods: {
     checkValue(inform) {
-      let nameVerify = /^[\u4E00-\u9FA5]{2,4}$/;
+      let nameVerify = /^[\u4E00-\u9FA5A-Za-z\s]+(·[\u4E00-\u9FA5A-Za-z]+)*$/;
       let idVerify = /^(20)(\d{6})?$/;
       if (!idVerify.test(inform.stuId)) {
-        console.log(inform.stuId);
-        console.log(idVerify.test(inform.stuId));
         Taro.atMessage({
             message: '再仔细看看学号哦',
             type: 'warning',
-        }) 
+        })
         return;
       } else if (!nameVerify.test(inform.realName)) {
         Taro.atMessage({
             message: '再仔细看看姓名哦',
             type: 'warning',
-        }) 
+        })
         return;
       }
       return true;
@@ -83,30 +81,28 @@ export default {
     async onSubmit () {
       if(this.checkValue(this.inform)) {
         const res = await Taro.login();
-        console.log(res.code);
+
         this.inform.jsCode = res.code;
         await request(
           '/bindUser',
           'POST',
           this.inform,
         );
-        // 注册后自动登录
         const registerSuccess = await wxLogin();
         if(registerSuccess) {
-          console.log(this.inform);
           Taro.switchTab({
             url: '../inform/inform'
           });
-        }  
-      } 
+        }
+      }
     },
-             
+
   },
   onShow() {
-      
+
   },
   mounted() {
-  
+
   }
 }
 </script>

@@ -60,7 +60,7 @@
         答：存在一定的网络延迟，请您谅解。
       </AtCard>
     </view>
-    
+
   </view>
 </template>
 
@@ -68,7 +68,6 @@
 
 
 import './faq.scss';
-import Taro from '@tarojs/taro';
 import { AtCard } from 'taro-ui-vue';
 
 export default {
@@ -87,7 +86,7 @@ export default {
   },
 
   created () {
-    
+
 
   }
 }

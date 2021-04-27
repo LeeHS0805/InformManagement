@@ -1,11 +1,25 @@
 import Vue from 'vue'
 import './app.scss'
-import 'taro-ui/dist/style/index.scss'
+// import 'taro-ui/dist/style/index.scss'
+import "taro-ui/dist/style/components/button.scss";
+import "taro-ui/dist/style/components/loading.scss";
+import "taro-ui/dist/style/components/timeline.scss";
+import "taro-ui/dist/style/components/icon.scss";
+import "taro-ui/dist/style/components/toast.scss";
+import "taro-ui/dist/style/components/icon.scss";
+import "taro-ui/dist/style/components/input.scss";
+import "taro-ui/dist/style/components/icon.scss";
+import "taro-ui/dist/style/components/calendar.scss";
+import "taro-ui/dist/style/components/image-picker.scss";
+import "taro-ui/dist/style/components/icon.scss";
+import "taro-ui/dist/style/components/flex.scss";
+import "taro-ui/dist/style/components/list.scss";
+import "taro-ui/dist/style/components/icon.scss";
+import "taro-ui/dist/style/components/card.scss";
 
-import Taro from '@tarojs/taro'
-Taro.setEnableDebug({
-  enableDebug:true
-})
+// Taro.setEnableDebug({
+//   enableDebug:true
+// })
 
 const App = {
   onShow (options) {

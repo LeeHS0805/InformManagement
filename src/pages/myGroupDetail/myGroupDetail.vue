@@ -1,7 +1,7 @@
 <template>
   <view class="myGroupDetailContainer">
      <!-- 群组封面 在最上面 -->
-     <view class="groupDetailBanner" v-for="items in myGroupDetail" :key="items.groupId">
+     <view class="groupDetailBanner" v-for="(items,index) in myGroupDetail" :key="index">
        <image class="bannerContainer" :src="getImgUrl(items)"></image>
      </view>
      <!-- 群组名 + 创建人 + 创建人学号 + 创建日期 圆角框  -->
@@ -9,7 +9,7 @@
        <!-- 群组名 -->
        <view class="groupDetailName ellipsis-2">
          {{myGroupDetail[0].name}}
-         
+
        </view>
        <!-- 其他基本群组信息 -->
        <view class="groupDetailOthers">
@@ -40,17 +40,17 @@
         <view class="groupAdmins">
           <text class="tagNameBtm">群组管理员</text>
           <view class="groupAdminsContainer">
-            <view v-for="item in myGroupDetail[0].admins" :key="item">
+            <view v-for="(item,index) in myGroupDetail[0].admins" :key="index">
               {{item.realName}}
             </view>
-            
+
           </view>
         </view>
         <!-- 群组成员 -->
         <view class="groupMembers ellipsis-3">
           <text class="tagNameBtm">群组成员</text>
           <view class="groupMembersContainer">
-            <view v-for="item in myGroupDetail[0].members" :key="item"> {{item.realName}}</view>
+            <view v-for="(item,index) in myGroupDetail[0].members" :key="index"> {{item.realName}}</view>
           </view>
         </view>
         <!-- 管理员权限 条件渲染 -->
@@ -59,8 +59,8 @@
               <text>管理员</text>
             </AtFab>
           </view>
-          <AtFloatLayout 
-            title="管理群组" 
+          <AtFloatLayout
+            title="管理群组"
             :isOpened="setIsOpened"
             :onClose="handleClose"
           >
@@ -77,17 +77,17 @@
                     name='userId'
                     title='学号'
                     type='number'
-                    placeholder='请输入新增管理员的学号'
+                    placeholder='输入新增管理员学号'
                     :value="userId"
                     :onChange="handleInputuserId"
                   />
-                </view>    
+                </view>
               </view>
               <button type='primary' circle form-type="submit" @tap="addAdmin()" class="submitBtn">提交</button>
               <AtMessage />
           </view>
-          </AtFloatLayout>      
-      </view>   
+          </AtFloatLayout>
+      </view>
   </view>
 </template>
 <script>
@@ -98,8 +98,6 @@ import Taro from '@tarojs/taro';
 import request from '../../utills/request';
 import verifyRequest from "../../utills/verifyRequest";
 import { AtFloatLayout, AtIcon, AtFab, AtButton, AtInput, AtForm, AtMessage } from 'taro-ui-vue';
-
-
 export default {
   data() {
     return {
@@ -121,13 +119,13 @@ export default {
       isAdminVerify: false,
     }
   },
- 
+
   components: {
     AtFloatLayout,
     AtIcon,
     AtFab,
     AtButton,
-    AtInput, 
+    AtInput,
     AtForm,
     AtMessage
   },
@@ -135,38 +133,38 @@ export default {
     getImgUrl(items){
       var url = 'https://clayex.com/'+items.avatarImg;
       return url;
-    },  
+    },
     handleClose() {
       this.setIsOpened = false;
-      console.log('handleClose_setIsOpened',this.setIsOpened);
-    }, 
-    
+
+    },
+
     handleInputuserId(res_userId) {
       this.userId = res_userId;
-      console.log(this.userId);
+
     },
-    
+
     onButtonClick() {
       this.setIsOpened = true;
-      console.log('onButtonClick',this.setIsOpened);
+
     },
     async addAdmin() {
        let verifyCode = await request(
         '/addAdmin',
         'GET',
-        { 
+        {
           userId: this.userId,
           groupId: this.groupId,
         },
       ).then(res=>{
         return res.code;
       })
-      console.log(verifyCode);
+
       if (verifyRequest(verifyCode)) {
           Taro.atMessage({
           message: '添加管理员成功',
           type: 'success',
-        }) 
+        })
           Taro.reLaunch({
             url: '../myChannel/myChannel',
           })
@@ -174,13 +172,13 @@ export default {
           Taro.atMessage({
           message: '用户已在权限列表',
           type: 'warning',
-        }) 
+        })
       }
     },
   },
   async onLoad() {
     let groupId = Taro.getStorageSync('groupId');
-    console.log('onLoad_groupId',groupId);
+
     // Taro.removeStorageSync('groupId');
     let myGroupDetailData = await request(
         '/getGroupDetail',
@@ -197,7 +195,7 @@ export default {
       return res.data;
     })
     this.isAdminVerify = isAdminVerify;
-    console.log(isAdminVerify);
+
     if( isAdminVerify === true ) {
       let myFriendCode = await request(
         '/getFriendCode',
