@@ -2,7 +2,7 @@
   <view class="informCard">
     <view class="emptyCard" v-if="noInform">
       <image
-        src="http://49.232.223.89:50030/WIX5xghzaoBAMcCQKlwRVc6O9OrrL17KIX9lgO9Yz8vaipjXqCxHxJfcxcVdN2No.png"></image>
+        src="https://clayex.com/WIX5xghzaoBAMcCQKlwRVc6O9OrrL17KIX9lgO9Yz8vaipjXqCxHxJfcxcVdN2No.png"></image>
     </view>
     <view class="card" v-for="(item) in informArray" @tap="goDetail(item)">
       <view class="cardHeader">
