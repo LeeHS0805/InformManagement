@@ -26,18 +26,6 @@ async function innerRequest() {
 
   //判断是否注册
   if (!val2.data.isRegister) {
-    // Taro.getUserProfile({
-    //   desc: '用于完善个人资料', 
-    //   success: (res) => {
-    //     Taro.showToast({
-    //       title: '成功授权'
-    //     })
-    //     console.log(res);
-    //     console.log("成功获取用户头像和个人信息");
-    //     console.log(res.userInfo.avatarUrl);
-    //     console.log(res.userInfo.nickName);
-    //   }
-    // });
     let url = `../register/register`
     Taro.navigateTo({
         url,
