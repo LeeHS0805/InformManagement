@@ -60,7 +60,6 @@ export default {
         url
       })
     }else {
-
       this.isLoading = false;
     }
   },

@@ -42,6 +42,7 @@ export default {
       if (this.pageTotal == 0 || this.pageTotal > this.page) {
         await Taro.showToast({title: '加载中', icon: 'loading', duration: 2000})
         let {data: {docs, pageTotal}} = await request('/getMyInformByDate', 'get', {date, page: this.page})
+        console.log(docs)
         this.pageTotal = pageTotal
         docs = this.filterInfo(docs)
         this.showInformImg(docs)
@@ -98,7 +99,7 @@ export default {
   },
   //onLoad触发一次登录请求
   async onLoad() {
-    if(Taro.getStorageSync('session'))await wxLogin()
+    await wxLogin()
   },
   async onShow(){
     this.clearPage()

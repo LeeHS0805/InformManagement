@@ -34,6 +34,7 @@
         height: fit-content;
         bottom: 70px;
         left: 40px;
+        color: #333;
       }
       .groupMembersNum {
         position: absolute;
@@ -43,6 +44,7 @@
         color: rgba(61, 61, 61,1.0);
         left: 40px;
         bottom: 30px;
+        color: #333;
       }
       .groupCover {
         position: absolute;
@@ -66,16 +68,6 @@
   .noGroupContainer{
     width: 100%;
     height: 100vh;
-    .noGroupText {
-     position: fixed;
-      font-size: 45px;
-      font-weight: 800;
-      color: whitesmoke;
-      top: 100px;
-      width: 100%;
-      height: 300px;
-      text-align: center;
-    }
     .noGroupImage{
       border-radius: 6px;
       width: 100%;

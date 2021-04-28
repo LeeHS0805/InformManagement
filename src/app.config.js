@@ -12,9 +12,7 @@ export default {
     'pages/addInform/addInform',
     'pages/inform/inform',
     'pages/informDetail/informDetail',
-    'pages/faq/faq',
     'pages/setting/setting',
-
   ],
   window: {
     backgroundTextStyle: 'light',

@@ -4,7 +4,7 @@
       <AtList>
       <AtListItem title='隐私条款' arrow='right' />
       <!-- :onClick @tap -->
-      <AtListItem title='版本号' extraText='1.0.0' />
+      <AtListItem title='版本号' extraText='1.0.1' />
     </AtList>
     </view>
     <view class="btnBottom">
@@ -45,7 +45,7 @@ export default {
   },
 
   created () {
-    
+
 
   }
 }

@@ -32,7 +32,7 @@
       </view>
 
       <view class="createChannelBtn">
-      <AtButton circle type='secondary' :onClick="createNewChannel">创建新的频道</AtButton>
+      <AtButton circle type='secondary' :disabled="disabled" :onClick="createNewChannel">创建新的频道</AtButton>
       </view>
   </view>
 </template>
@@ -71,6 +71,7 @@ export default {
       operationType: '',
       avatarImg: '',
       index: 1,
+      disabled:false,
     }
   },
 
@@ -110,6 +111,7 @@ export default {
     async createNewChannel() {
       if(this.files[0].type != 'btn') {
           const avatarImg = await new Promise((resolve, reject) => {
+          this.disabled=true;
           Taro.uploadFile({
             url: 'https://clayex.com/uploadImages',
             filePath: this.files[0].url,
@@ -118,9 +120,11 @@ export default {
               session: Taro.getStorageSync('session'),
             },
             success (res){
+              this.disabled=false
               resolve(JSON.parse(res.data).data[0]);
             },
             fail (error) {
+              this.disabled=false
               reject(error);
             }
           })
@@ -133,6 +137,9 @@ export default {
             "avatarImg": avatarImg,
           },
         );
+        Taro.showToast({
+          title: '一个新的频道！'
+        })
       } else {
         await request(
           '/createGroup',
@@ -141,20 +148,14 @@ export default {
             "name": this.name,
           },
         );
+        Taro.showToast({
+          title: '看看默认封面吧！'
+        })
       }
-      Taro.reLaunch({
+      Taro.navigateTo({
         url: '../myChannel/myChannel',
-      })
-      Taro.showToast({
-        title: '一个新的频道！'
       })
     },
   },
-
-
-  created () {
-
-
-  }
 }
 </script>

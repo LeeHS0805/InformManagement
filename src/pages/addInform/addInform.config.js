@@ -1,4 +1,3 @@
 export default {
-  usingComponents: {
-  },
+  navigationBarTitleText: '发布通知',
 }

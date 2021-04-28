@@ -2,35 +2,49 @@ import request from './request'
 import verifyRequest from "./verifyRequest";
 import Taro from '@tarojs/taro'
 
+//服务器登录内部请求
+//服务器非正常时返回null
 async function serverlogin(code){
-  let val = await request('/login', "GET", {js_code: code});
+  let val = await Taro.request({
+    url:'https://clayex.com/login',
+    method:"GET",
+    data:{js_code: code},
+  });
+  console.log(val)
   if(val==null) return null;
-  if (!verifyRequest(val.code, "code请求失败")) return null
-  Taro.setStorageSync('session', val.data.session);
-  Taro.setStorageSync('stuId', val.data.stuId);
-  return new Promise(resolve => {resolve(val)})
-}
 
-async function innerRequest() {
-  //微信login请求
-  let val1 = await Taro.login()
-
-  //向server传code
-  let val2 = await serverlogin(val1.code)
-
-
-
-  if(val2==null) return false;
-
-
-
-  //判断是否注册
-  if (!val2.data.isRegister) {
+  if(val.data.code==50000){
+    Taro.setStorageSync('session', val.data.data.session);
+  }
+  else{
     let url = `../register/register`
     Taro.navigateTo({
-        url,
+      url,
     })
-  }else return true;
+    return null
+  }
+  console.log(Taro.getStorageSync('session'));
+  return new Promise(resolve => {resolve(val)})
+}
+function showToast(){
+  Taro.showToast({
+    title: '网络故障',
+    icon: 'error',
+    duration: 2000,
+  })
+}
+async function innerRequest() {
+  let val1,val2
+  //微信login请求
+  if(!(val1 = await Taro.login())) showToast()
+  //向server传code
+  if(!(val2 = await serverlogin(val1.code))) {
+    showToast()
+    return false
+  }
+
+  //判断是否注册
+  return true;
 }
 
 export default async function () {

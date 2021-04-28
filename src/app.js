@@ -19,12 +19,14 @@ import "taro-ui/dist/style/components/card.scss";
 import "taro-ui-vue/dist/style/components/fab.scss";
 import "taro-ui-vue/dist/style/components/float-layout.scss";
 import "taro-ui-vue/dist/style/components/message.scss";
-// Taro.setEnableDebug({
-//   enableDebug:true
-// })
+wx.setEnableDebug({
+  enableDebug:true
+})
+
 
 const App = {
-  onShow (options) {
+  onLoad (options) {
+
   },
   render(h) {
     // this.$slots.default 是将要会渲染的页面

@@ -1,5 +1,6 @@
 import config from "../config/config.json"
 import Taro from '@tarojs/taro'
+import wxLogin from "./wxLogin";
 
 export default function (url = '', method = 'GET', param = null) {
   url = config.baseUrl + url
@@ -12,7 +13,7 @@ export default function (url = '', method = 'GET', param = null) {
         session: Taro.getStorageSync('session')
       },
       async success(info) {
-        if(info.data.data&&info.data.data.isRegister===false) resolve(info.data);
+        if(info.data.data) resolve(info.data);
 
         if(info.data.code!=50000||typeof info.data =="undefined"){
           Taro.hideToast()

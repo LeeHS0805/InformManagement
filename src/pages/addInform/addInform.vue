@@ -106,7 +106,7 @@ export default {
       ],
       selectorValue: [],        //picker选中的信息 [0]优先级 [1]adminGroup [2]deadline
       inform: {                 //表单提交对象
-        title: ' ',
+        title: '',
         content: '',
         relatedGroup: [],
         tag: [],
@@ -169,7 +169,7 @@ export default {
         this.showToast('提交成功','success')
         setTimeout(()=>{
           Taro.reLaunch({
-            url:'../../pages/addInform/addInform'
+            url:'../../pages/inform/inform'
           },1200)
         })
       }
@@ -208,9 +208,10 @@ export default {
     checkParams() {
       for (let key in this.inform) {
         let item = this.inform[key]
-        console.log(item)
-        return !(item === '' || item == null || item === [] || !item);
+        if(key=='resources') continue;
+        if (item === '' || item == null || item.length == 0) return false;
       }
+      return true;
     },
     showToast(msg, type) {
       Taro.showToast({title: msg, icon: type, duration: 900})
@@ -221,6 +222,7 @@ export default {
   },
   async onShow() {
     this.adminGroup = (await request('/getMyAdminGroup', 'GET', null)).data
+
     this.selector[1] = []
     this.adminGroup.forEach((item) => {
       //将adminGroup中的Name属性抽离,用于picker的option属性渲染

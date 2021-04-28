@@ -18,8 +18,7 @@
       </view>
     </view>
     <view class="noGroupContainer" v-else>
-      <text class="noGroupText">去创建或者加入一个频道吧</text>
-      <image class="noGroupImage" src="https://www.z4a.net/images/2021/04/11/test.jpg"></image>
+      <image class="noGroupImage" src="https://www.z4a.net/images/2021/04/28/default_img8427b800f418a394.jpg"></image>
     </view>
 
   </view>

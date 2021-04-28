@@ -36,8 +36,8 @@
         </view>
         <view class="informImage">
           <view class="image" v-for="item in inform.resources">
-            <image class='imageSmall':src="`http://49.232.223.89:50030/${item}`"
-                   @tap="showImg(`http://49.232.223.89:50030/${item}`)"></image>
+            <image class='imageSmall':src="`https://clayex.com/${item}`"
+                   @tap="showImg(`https://clayex.com/${item}`)"></image>
           </view>
         </view>
         <view class="finish-btn">
@@ -53,22 +53,6 @@
     <view class="showImage" v-if="isShowImg" @tap.prevent="()=>{isShowImg=false;isSaveImage=false}">
       <image class='imageLarge' :src="imgSrc" @longPress.prevent="saveImage"></image>
     </view>
-    <AtActionSheet
-      :isOpened="isSaveImage"
-      :on-close="closeImage"
-    >
-      <AtActionSheetItem
-        :on-click="saveImage"
-      >
-        保存图片
-      </AtActionSheetItem>
-      <AtActionSheetItem
-        :on-click="closeImage"
-
-      >
-        取消
-      </AtActionSheetItem>
-    </AtActionSheet>
   </view>
 </template>
 
@@ -106,12 +90,13 @@ export default {
     showImg(imgSrc) {
       this.imgSrc = imgSrc
       // this.isShowImg = true
-
+      console.log(imgSrc)
       Taro.previewImage({
         current: imgSrc, // 当前显示图片的http链接
         showmenu:true,
         urls: this.inform.resources.map(item=>{
-            return `http://49.232.223.89:50030/${this.inform.resources}`
+          console.log(`https://clayex.com/${item}`)
+            return `https://clayex.com/${item}`
         }) ,// 需要预览的图片http链接列表
         fail(res){
 
