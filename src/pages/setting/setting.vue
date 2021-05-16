@@ -7,8 +7,8 @@
       <AtListItem title='版本号' extraText='1.0.1' />
     </AtList>
     </view>
-    <view class="btnBottom">
-      <AtButton type='primary' circle :onClick="toLogin">退出登录</AtButton>
+    <view>
+      <AtButton :onClick="toLogin" class="btnBottom">退出登录</AtButton>
     </view>
     <view class="copyrightBottom">
       ©2021-布吉岛
