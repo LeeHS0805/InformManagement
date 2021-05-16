@@ -2,6 +2,8 @@ export default {
   pages: [
     'pages/profile/profile',
     'pages/register/register',
+   
+   
     'pages/login/login',
     
     
