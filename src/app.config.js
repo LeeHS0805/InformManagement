@@ -1,5 +1,6 @@
 export default {
   pages: [
+    'pages/myGroupDetail/myGroupDetail',
     'pages/profile/profile',
     'pages/register/register',
    
@@ -9,7 +10,7 @@ export default {
     
     'pages/myChannel/myChannel',
     'pages/feedback/feedback',
-    'pages/myGroupDetail/myGroupDetail',
+    
     'pages/createChannel/createChannel',
     'pages/joinChannel/joinChannel',
     'pages/launch/launch',
