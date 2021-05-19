@@ -1,15 +1,18 @@
 .register {
     height: 100%;
-    background: #ecf0f1;
     .userRegisterBasic {
         margin-bottom: 30px;
     }
     .alreadyFilled {
         position: absolute;
-        width: 600px;
+        width: 80%;
         left: 50%;
-        margin-left: -300px;
-        text-align: center;
-        color: #bdc3c7;
+        margin-left: -40%;  
+        .alreadyFilledBtn {
+            background-color:rgba(55, 66, 250,1.0);
+            color: #ffffff;
+            border-radius: 3%;
+            border: 0;
+        }
     }
 }

@@ -23,7 +23,7 @@
         </AtForm>
         </view>
         <view class="alreadyFilled">
-            <button type='primary' circle form-type="submit" @tap="onSubmit()">我填好了</button>
+            <button class="alreadyFilledBtn" form-type="submit" @tap="onSubmit()">我填好了</button>
         </view>
       <AtMessage />
   </view>
