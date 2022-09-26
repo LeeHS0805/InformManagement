@@ -11,10 +11,10 @@
     }
   }
   .basicInfomations {
-    width: 98%;
+    width: 100%;
     height: 67vh;
     padding-bottom: 5%;
-    background: rgba(255, 255, 255,0.6);
+    background: rgba(255, 255, 255,1);
     position: relative;
     margin-top: -3%;
     border-top-left-radius: 5%;
@@ -22,7 +22,7 @@
     border: solid 1px rgba(44, 62, 80,0.3);
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0,0.2);
     left: 50%;
-    margin-left: -49%;
+    margin-left: -50%;
     .groupDetailName {
       width: fit-content;
       height: fit-content;
